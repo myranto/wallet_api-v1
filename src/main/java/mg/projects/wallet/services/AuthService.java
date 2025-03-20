@@ -14,7 +14,7 @@ public class AuthService {
     public Customer checkPassword(AuthDTO user) throws Exception{
             Customer finded = repo.findOneByMail(user.getMail()).orElseThrow(()->new Exception("Identifiant ou mot de passe incorrect"));
             if (!finded.getPassword().equals(user.getPassword())) {
-            throw new Exception("Identifiant ou mot de passe incorrect");
+                throw new Exception("Identifiant ou mot de passe incorrect");
             }
             return finded;
     }
