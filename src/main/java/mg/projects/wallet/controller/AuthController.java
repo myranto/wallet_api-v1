@@ -26,4 +26,17 @@ public class AuthController {
             return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()), org.springframework.http.HttpStatus.UNAUTHORIZED);
         }
     }
+    /* 
+     * Controller for forget password in local
+     */
+    @PostMapping("/reset/password")
+    public ResponseEntity<?> postMethodName(@RequestBody AuthDTO model) {
+        try {
+            return ResponseEntity.ok(new ToJsonData<>(service.resetPassword(model), null));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()), org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+    
 }
