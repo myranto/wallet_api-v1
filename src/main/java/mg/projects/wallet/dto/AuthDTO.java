@@ -4,6 +4,9 @@ public class AuthDTO {
     private String id;
     private String mail;
     private String password;
+    private String pwd;
+  
+
     private String token;
     
     public String getId() {
@@ -42,7 +45,13 @@ public class AuthDTO {
     public void setPassword(String password) {
         this.password = password;
     }
+    public String getPwd() {
+        return pwd;
+    }
 
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
     
 
 }
