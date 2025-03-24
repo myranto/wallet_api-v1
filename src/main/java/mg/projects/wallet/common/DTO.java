@@ -1,12 +1,10 @@
 package mg.projects.wallet.common;
 
-import jakarta.persistence.*;
+import jakarta.persistence.MappedSuperclass;
 import mg.projects.wallet.common.DtoConversion.ConversionService;
 
 @MappedSuperclass
-public class BaseEntity<D extends Object> extends ConversionService {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class DTO<B extends Object> extends ConversionService{
     private String id;
 
     public void setId(String id) {

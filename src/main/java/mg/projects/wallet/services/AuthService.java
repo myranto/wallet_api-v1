@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mg.projects.wallet.dto.AuthDTO;
+import mg.projects.wallet.dto.CustomerDTO;
 import mg.projects.wallet.models.Customer;
 import mg.projects.wallet.repository.CustomerRepo;
 
@@ -12,12 +13,12 @@ public class AuthService {
     @Autowired
     private CustomerRepo repo;
 
-    public Customer checkPassword(AuthDTO user) throws Exception{
+    public CustomerDTO checkPassword(AuthDTO user) throws Exception{
             Customer finded = repo.findOneByMail(user.getMail()).orElseThrow(()->new Exception("Identifiant ou mot de passe incorrect"));
             if (!finded.getPassword().equals(user.getPassword())) {
                 throw new Exception("Identifiant ou mot de passe incorrect");
             }
-            return finded;
+            return finded.modelsToDTO();
     }
     /* 
      * Forget password in local

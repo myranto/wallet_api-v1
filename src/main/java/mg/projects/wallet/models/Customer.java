@@ -2,19 +2,22 @@ package mg.projects.wallet.models;
 
 import java.sql.Timestamp;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import mg.projects.wallet.common.BaseEntity;
+import mg.projects.wallet.common.DtoConversion.InvalidConversion;
 import mg.projects.wallet.dto.CustomerDTO;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @Entity
-public class Customer extends BaseEntity{
+public class Customer extends BaseEntity<CustomerDTO>{
+
     @Column(nullable = false)
     private String name;
 
@@ -31,14 +34,30 @@ public class Customer extends BaseEntity{
     private Timestamp creation_date = new Timestamp(System.currentTimeMillis());
     
     @Column
+    @InvalidConversion
     private String password;
 
     public Customer() {
     }
-    public Customer DTOtoCustomer(CustomerDTO dto){
-        Customer news = new Customer(dto.getName(), dto.getMail(), dto.getPhone(), dto.getRole(), dto.getCreation_date(), dto.getPassword());
-        news.setId(dto.getId());
-        return news;
+    public Customer(String name, String mail, String phone, String role, Timestamp creation_date) {
+        this.name = name;
+        this.mail = mail;
+        this.phone = phone;
+        this.role = role;
+        this.creation_date = creation_date;
     }
+    
+    public CustomerDTO modelsToDTO(){
+        CustomerDTO dto =  new CustomerDTO(this.getName(), this.getMail(), this.getPhone(), this.getRole(), this.getCreation_date());
+        dto.setId(this.getId());
+        return dto;
+    }
+    @Override
+    public String toString() {
+        return "Customer [ customer name=" + name + ", mail=" + mail + ", phone=" + phone
+                + ", role=" + role + ", creation_date=" + creation_date + ", password=" + password + "]";
+    }
+
+   
     
 }
