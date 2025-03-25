@@ -1,11 +1,14 @@
 package mg.projects.wallet.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -22,14 +25,19 @@ public class CustomerServiceTest {
     @InjectMocks
     private CustomerService service;
 
-    @Test
-    void testDelete() {
-
-    }
+    // @BeforeEach
+    // void setUp(){
+    //     MockitoAnnotations.openMocks(this);
+    // }
 
     @Test
     void testDeleteById() {
-
+        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        p.setId("CUS003");
+        p.setPassword("sitraka");
+        service.deleteById("CUS003");
+        // when(repo.deleteById("CUS003"))
+        verify(repo).deleteById("CUS003");
     }
 
     @Test
@@ -44,12 +52,19 @@ public class CustomerServiceTest {
         when(repo.findAll()).thenReturn(List.of(customer, customer2));
 
         List<Customer> list = service.findAll(null);
-        assertEquals(2, list.size());
+        Assertions.assertThat(list).hasSize(2).containsExactly(customer, customer2);
     }
 
     @Test
     void testFindById() {
+        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        p.setId("CUS003");
+        p.setPassword("sitraka");
 
+        when(repo.findById("CUS003")).thenReturn(Optional.of(p));
+
+        Customer finded = service.findById("CUS003");
+        assertEquals(p, finded);
     }
 
     @Test
@@ -68,7 +83,12 @@ public class CustomerServiceTest {
     }
 
     @Test
-    void testSave() {
-
+    void testSaveAndUpdate() {
+        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        p.setId("CUS003");
+        p.setPassword("sitraka");
+        when(repo.save(p)).thenReturn(p);
+        Customer person = service.save(p);
+        Assertions.assertThat(person).isEqualTo(p);
     }
 }

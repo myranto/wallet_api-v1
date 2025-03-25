@@ -26,7 +26,10 @@ public class CommonController<S extends CommonService,T extends BaseEntity>  {
     @PostMapping("")
     public ResponseEntity<?> saveModel(@RequestBody T model) {
         try {
-            return ResponseEntity.ok(new ToJsonData<>(service.save(model), null));
+            // return ResponseEntity.ok(new ToJsonData<>(service.save(model), null));
+            T models = (T) service.save(model);
+            return new ResponseEntity<>(new ToJsonData<>(models, null), org.springframework.http.HttpStatus.CREATED);
+            
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()), org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
@@ -60,6 +63,15 @@ public class CommonController<S extends CommonService,T extends BaseEntity>  {
             List<T> list = service.findAll(key);
 
             return ResponseEntity.ok(new ToJsonData<>(list, null));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()), org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findEntityByID(@PathVariable(value = "id") String id) {
+        try {
+            return ResponseEntity.ok(new ToJsonData<>(service.findById(id), null));
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()), org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
