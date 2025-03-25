@@ -13,9 +13,9 @@ import mg.projects.wallet.dto.TypeOperationDTO;
 @Getter
 @Setter
 public class TypeOperation extends BaseEntity{
-    @Column
+    @Column(nullable = false)
     private String libelle;
-    @Column
+    @Column(nullable = false)
     private String value;
     @Column
     private Timestamp creation_date = new Timestamp(System.currentTimeMillis());

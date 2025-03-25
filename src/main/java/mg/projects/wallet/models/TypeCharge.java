@@ -15,9 +15,9 @@ import mg.projects.wallet.dto.TypeChargeDTO;
 public class TypeCharge extends BaseEntity {
     @Column
     private String libelle;
-    @Column
+    @Column(nullable = false)
     private String value;
-    @Column
+    @Column(nullable = false)
     private Timestamp creation_date = new Timestamp(System.currentTimeMillis());
 
     public TypeCharge() {

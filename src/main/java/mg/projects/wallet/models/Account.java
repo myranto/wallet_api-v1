@@ -18,9 +18,9 @@ public class Account extends BaseEntity{
     private BigDecimal current_amount;
     @Column
     private Timestamp date_amount;
-    @Column
+    @Column(nullable = false)
     private String customer_id;
-    @Column
+    @Column(nullable = false)
     private String type_id;
     @Column
     private Timestamp creation_date = new Timestamp(System.currentTimeMillis());
