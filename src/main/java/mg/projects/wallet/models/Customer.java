@@ -5,7 +5,6 @@ import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import mg.projects.wallet.common.BaseEntity;
@@ -14,9 +13,8 @@ import mg.projects.wallet.dto.CustomerDTO;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @Entity
-public class Customer extends BaseEntity<CustomerDTO>{
+public class Customer extends BaseEntity{
 
     @Column(nullable = false)
     private String name;
@@ -24,6 +22,7 @@ public class Customer extends BaseEntity<CustomerDTO>{
     @Column(unique = true, nullable = false)
     private String mail;
 
+    
     @Column
     private String phone;
 
@@ -38,23 +37,29 @@ public class Customer extends BaseEntity<CustomerDTO>{
     private String password;
 
     public Customer() {
+        setDto(CustomerDTO.class);
     }
     public Customer(String name, String mail, String phone, String role, Timestamp creation_date) {
+        setDto(CustomerDTO.class);
         this.name = name;
         this.mail = mail;
         this.phone = phone;
         this.role = role;
         this.creation_date = creation_date;
     }
-    
-    public CustomerDTO modelsToDTO(){
-        CustomerDTO dto =  new CustomerDTO(this.getName(), this.getMail(), this.getPhone(), this.getRole(), this.getCreation_date());
-        dto.setId(this.getId());
-        return dto;
+    public Customer(String name, String mail, String phone, String role, Timestamp creation_date, String password) {
+        setDto(CustomerDTO.class);
+        this.name = name;
+        this.mail = mail;
+        this.phone = phone;
+        this.role = role;
+        this.creation_date = creation_date;
+        this.password = password;
     }
+
     @Override
     public String toString() {
-        return "Customer [ customer name=" + name + ", mail=" + mail + ", phone=" + phone
+        return "Customer [ customer , id="+this.getId()+", name=" + name + ", mail=" + mail + ", phone=" + phone
                 + ", role=" + role + ", creation_date=" + creation_date + ", password=" + password + "]";
     }
 

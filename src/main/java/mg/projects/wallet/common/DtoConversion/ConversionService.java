@@ -12,6 +12,7 @@ public class ConversionService{
      * second = l'objet à migrer dans first
      */
     public Object ObjectConversion(Class<?> first, Object second) throws InstantiationException, IllegalAccessException, InvocationTargetException{
+        @SuppressWarnings("deprecation")
         Object result= first.newInstance();
         Field[] validFields = fieldsValidConversion(first, second);
         Method[] FirstMethods = getAllMethods(first);

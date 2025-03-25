@@ -18,7 +18,7 @@ public class AuthService {
             if (!finded.getPassword().equals(user.getPassword())) {
                 throw new Exception("Identifiant ou mot de passe incorrect");
             }
-            return finded.modelsToDTO();
+            return (CustomerDTO) finded.EntityToDTO();
     }
     /* 
      * Forget password in local

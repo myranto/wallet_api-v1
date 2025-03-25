@@ -4,16 +4,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.sql.Timestamp;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import mg.projects.wallet.common.DTO;
-import mg.projects.wallet.common.DtoConversion.InvalidConversion;
 import mg.projects.wallet.models.Customer;
 
 @Getter
 @Setter
-@NoArgsConstructor
-public class CustomerDTO extends DTO<Customer>{
+public class CustomerDTO extends DTO{
 
     private String name;
     private String mail;
@@ -21,30 +18,31 @@ public class CustomerDTO extends DTO<Customer>{
     private String role;
     private String password;
     private Timestamp creation_date;
-    
+    public CustomerDTO(){
+        this.setEntity(Customer.class);
+    }
     public CustomerDTO(String name, String mail, String phone, String role, Timestamp creation_date) {
         this.name = name;
         this.mail = mail;
         this.phone = phone;
         this.role = role;
         this.creation_date = creation_date;
+        this.setEntity(Customer.class);
     }
-
-    // public Customer DTOtoCustomer(CustomerDTO dto){
-    //     Customer news = new Customer(dto.getName(), dto.getMail(), dto.getPhone(), dto.getRole(), dto.getCreation_date());
-    //     news.setId(dto.getId());
-    //     return news;
-    // }
 
     @Override
     public String toString() {
-        return "CustomerDTO [ DTO,  name=" + name + ", mail=" + mail + ", phone="
+        return "CustomerDTO [ DTO,  id="+this.getId()+", name=" + name + ", mail=" + mail + ", phone="
                 + phone + ", role=" + role + ", password=" + password + ", creation_date=" + creation_date + "]";
     }
     
     public static void main(String[] args) throws InstantiationException, IllegalAccessException, InvocationTargetException {
         CustomerDTO dto = new CustomerDTO( "My Ranto", "mmm@gmail.com", "39242", "Admin", new Timestamp(System.currentTimeMillis()));
-        Customer cli = (Customer) dto.ObjectConversion(Customer.class, dto);
+        dto.setId("CUS001");
+        Customer cli = (Customer) dto.dtoToBaseEntity();
         System.out.println(cli.toString());
+        System.out.println("reconversion inversé");
+        CustomerDTO reconvert = (CustomerDTO) cli.EntityToDTO();
+        System.out.println(reconvert.toString());
     }
 }
