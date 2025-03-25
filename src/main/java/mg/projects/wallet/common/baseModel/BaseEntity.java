@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import mg.projects.wallet.common.DtoConversion.ConversionService;
 import mg.projects.wallet.common.DtoConversion.InvalidConversion;
 
+// class qui hérite de conversion service afin d'executer la méthode de conversion
+// de manière uniforme pour tous les entity
 @MappedSuperclass
 public class BaseEntity extends ConversionService {
     @Id

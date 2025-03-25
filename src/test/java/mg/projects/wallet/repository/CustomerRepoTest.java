@@ -16,6 +16,7 @@ import org.springframework.test.context.jdbc.Sql;
 
 import mg.projects.wallet.models.Customer;
 
+// classe unit test repository pour l'entity customer
 @DataJpaTest
 @Sql("/data.sql")
 public class CustomerRepoTest {

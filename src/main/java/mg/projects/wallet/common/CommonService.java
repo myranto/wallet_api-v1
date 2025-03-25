@@ -9,6 +9,12 @@ import mg.projects.wallet.common.baseModel.BaseEntity;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+/*
+ * Classe dont tous les service entity réalisant un crud
+ * devront hériter pour ne pas avoir de répétition de code
+ * et avoir une performance inouie
+ */
 public class CommonService <T extends BaseEntity,ID,JPA extends JpaRepository<T,ID>> {
     private final JPA jpa;
     public CommonService(JPA jpa) {

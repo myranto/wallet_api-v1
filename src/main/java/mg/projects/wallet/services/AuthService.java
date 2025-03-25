@@ -7,7 +7,7 @@ import mg.projects.wallet.dto.AuthDTO;
 import mg.projects.wallet.dto.CustomerDTO;
 import mg.projects.wallet.models.Customer;
 import mg.projects.wallet.repository.CustomerRepo;
-
+// classe service servant pour l'authentication
 @Service
 public class AuthService {
     @Autowired

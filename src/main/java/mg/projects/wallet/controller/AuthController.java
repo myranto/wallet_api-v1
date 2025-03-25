@@ -11,6 +11,7 @@ import mg.projects.wallet.dto.AuthDTO;
 import mg.projects.wallet.format.ToJsonData;
 import mg.projects.wallet.services.AuthService;
 
+// classe controller servant pour l'authentication
 @RestController
 @RequestMapping("auth")
 public class AuthController {

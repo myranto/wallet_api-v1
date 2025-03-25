@@ -10,6 +10,9 @@ public class ConversionService{
     /*
      * first = l'objet de retour
      * second = l'objet à migrer dans first
+     * on prend les methodes get de second
+     * on prend les methodes set de first
+     * on invoke les methode first dans result avec comme arguments, les valeur des methodes get de second
      */
     public Object ObjectConversion(Class<?> first, Object second) throws InstantiationException, IllegalAccessException, InvocationTargetException{
         @SuppressWarnings("deprecation")
@@ -26,6 +29,9 @@ public class ConversionService{
         }
         return result;
     }
+    /*
+     * Function qui récupère les méthodes getters et setters selon la valeur de prefix
+     */
     private Method[] getPersonalMethod(Field[] fields, Method[] methods, String prefix){
         Method[] result = new Method[fields.length];
         int i=0;
@@ -40,7 +46,7 @@ public class ConversionService{
        return result;
     }
     /*
-     * getAll method
+     * Méthode qui récupère les méthodes de la classe mère et de la classe fille
      */
     private Method[] getAllMethods(Class<?> objet){
         Method[] superCLass = objet.getSuperclass().getDeclaredMethods();
@@ -51,27 +57,17 @@ public class ConversionService{
         System.arraycopy(son, 0, result, superCLass.length, son.length);
         return result;
     }
-/* maka field rehetra anaty class ray */
-    private Field[] getAllFields(Class<?> classs){
-        Field[] superCLass = classs.getSuperclass().getDeclaredFields();
-        Field[] son = classs.getDeclaredFields();
-        int count = superCLass.length+son.length;
-        Field[] result = new Field[count];
-        System.arraycopy(superCLass, 0, result, 0, superCLass.length);
-        System.arraycopy(son, 0, result, superCLass.length, son.length);
-        return result;
-    }
+
 
     /*
      * 
-     * maka anzay field valid alefa amle conversion
+     * Méthode qui récupère les fields valides pour la conversion dto <-> entity
      */
     private Field[] fieldsValidConversion(Class<?> first, Object second){
         Field[] firstField = getAllFields(first);
         Field[] secondField = getAllFields(second.getClass());
         int count = countFieldValue(firstField);
         Field[] result = new Field[count];
-        System.out.println(count);
         int i = 0;
         for (Field field : firstField) {
             for (Field raw : secondField) {
@@ -85,8 +81,23 @@ public class ConversionService{
         }
         return result;
     }
+
+     /* 
+     * Méthode qui récupère les fields de la classe mère et de la classe fille
+     */
+    private Field[] getAllFields(Class<?> classs){
+        Field[] superCLass = classs.getSuperclass().getDeclaredFields();
+        Field[] son = classs.getDeclaredFields();
+        int count = superCLass.length+son.length;
+        Field[] result = new Field[count];
+        System.arraycopy(superCLass, 0, result, 0, superCLass.length);
+        System.arraycopy(son, 0, result, superCLass.length, son.length);
+        return result;
+    }
+
     /*
-     * manisa field ho atao anle field vaovao
+     * Méthode qui compte les fields valides pour la conversion d'objet
+     * il servira de size pour le tableau de liste de field valide
      */
     private int countFieldValue(Field[] fields){
         int i = 0;

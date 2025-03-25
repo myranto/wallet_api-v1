@@ -1,5 +1,6 @@
 package mg.projects.wallet.format;
 
+// classe de formatage de donnée
 public class ToJsonData<T,Y> {
     T data=null;
     Y error=null;

@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import mg.projects.wallet.common.baseModel.BaseEntity;
 import mg.projects.wallet.format.ToJsonData;
-
+/*
+ * Classe dont tous les controller entity réalisant un crud
+ * devront hériter pour ne pas avoir de répétition de code
+ * et avoir une performance inouie
+ */
 public class CommonController<S extends CommonService,T extends BaseEntity>  {
     private final S service;
     public CommonController(S service) {

@@ -17,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import mg.projects.wallet.models.Customer;
 import mg.projects.wallet.repository.CustomerRepo;
 
+// classe unit service controller pour l'entity customer
 @SpringBootTest
 public class CustomerServiceTest {
     @Mock

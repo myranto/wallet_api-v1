@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import mg.projects.wallet.models.Customer;
 import mg.projects.wallet.services.CustomerService;
-
+// classe unit test controller pour l'entity customer
 @WebMvcTest(CustomerController.class)
 public class CustomerControllerTest {
     @Autowired
@@ -30,8 +30,6 @@ public class CustomerControllerTest {
         Customer customer =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
         customer.setId("CUS003");
         customer.setPassword("sitraka");
-
-        
 
         mockMVC.perform(MockMvcRequestBuilders.delete("/customer/CUS003"))
         .andExpect(MockMvcResultMatchers.status().isOk());
