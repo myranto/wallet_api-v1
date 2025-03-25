@@ -1,6 +1,5 @@
 package mg.projects.wallet.common;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import mg.projects.wallet.common.baseModel.BaseEntity;
 import mg.projects.wallet.format.ToJsonData;
-import mg.projects.wallet.models.Customer;
 
 public class CommonController<S extends CommonService,T extends BaseEntity>  {
     private final S service;
