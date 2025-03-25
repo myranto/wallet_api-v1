@@ -7,27 +7,29 @@ import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 import mg.projects.wallet.common.baseModel.BaseEntity;
-import mg.projects.wallet.dto.TypeOperationDTO;
+import mg.projects.wallet.dto.TypeChargeDTO;
 
-@Entity(name = "type_operation")
 @Getter
 @Setter
-public class TypeOperation extends BaseEntity{
+@Entity(name="type_charge")
+public class TypeCharge extends BaseEntity {
     @Column
     private String libelle;
     @Column
     private String value;
     @Column
     private Timestamp creation_date = new Timestamp(System.currentTimeMillis());
-    
-    public TypeOperation() {
-        setDto(TypeOperationDTO.class);
+
+    public TypeCharge() {
+        setDto(TypeChargeDTO.class);
     }
-    public TypeOperation(String libelle, String value, Timestamp creation_date) {
+    public TypeCharge(String libelle, String value, Timestamp creation_date) {
         this.libelle = libelle;
         this.value = value;
         this.creation_date = creation_date;
-        setDto(TypeOperationDTO.class);
+        setDto(TypeChargeDTO.class);
     }
     
+    
+
 }
