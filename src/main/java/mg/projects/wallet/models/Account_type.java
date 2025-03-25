@@ -6,7 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
-import mg.projects.wallet.common.BaseEntity;
+import mg.projects.wallet.common.baseModel.BaseEntity;
 import mg.projects.wallet.dto.AccounTypeDTO;
 
 /*
@@ -22,7 +22,7 @@ public class Account_type extends BaseEntity{
     @Column
     private String value;
     @Column
-    private Timestamp creation_date;
+    private Timestamp creation_date = new Timestamp(System.currentTimeMillis());
 
     public Account_type() {
         setDto(AccounTypeDTO.class);

@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import mg.projects.wallet.common.baseModel.BaseEntity;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 public class CommonService <T extends BaseEntity,ID,JPA extends JpaRepository<T,ID>> {

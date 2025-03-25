@@ -7,8 +7,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
-import mg.projects.wallet.common.BaseEntity;
 import mg.projects.wallet.common.DtoConversion.InvalidConversion;
+import mg.projects.wallet.common.baseModel.BaseEntity;
 import mg.projects.wallet.dto.CustomerDTO;
 
 @Getter

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import mg.projects.wallet.common.baseModel.BaseEntity;
 import mg.projects.wallet.format.ToJsonData;
 
 public class CommonController<S extends CommonService,T extends BaseEntity>  {

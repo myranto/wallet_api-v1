@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
-import mg.projects.wallet.common.DTO;
+import mg.projects.wallet.common.baseModel.DTO;
 import mg.projects.wallet.models.Customer;
 
 @Getter

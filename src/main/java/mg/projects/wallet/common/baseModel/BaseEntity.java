@@ -1,4 +1,4 @@
-package mg.projects.wallet.common;
+package mg.projects.wallet.common.baseModel;
 
 import java.lang.reflect.InvocationTargetException;
 
