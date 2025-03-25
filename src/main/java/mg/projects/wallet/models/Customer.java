@@ -47,6 +47,7 @@ public class Customer extends BaseEntity{
         this.role = role;
         this.creation_date = creation_date;
     }
+    
     public Customer(String name, String mail, String phone, String role, Timestamp creation_date, String password) {
         setDto(CustomerDTO.class);
         this.name = name;

@@ -32,9 +32,9 @@ public class CustomerServiceTest {
 
     @Test
     void testDeleteById() {
-        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
-        p.setId("CUS003");
-        p.setPassword("sitraka");
+        // Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        // p.setId("CUS003");
+        // p.setPassword("sitraka");
         service.deleteById("CUS003");
         // when(repo.deleteById("CUS003"))
         verify(repo).deleteById("CUS003");

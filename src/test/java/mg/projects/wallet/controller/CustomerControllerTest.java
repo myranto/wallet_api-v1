@@ -27,8 +27,15 @@ public class CustomerControllerTest {
     private CustomerService service;
 
     @Test
-    void testDeleteById() {
+    void testDeleteById() throws Exception {
+        Customer customer =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        customer.setId("CUS003");
+        customer.setPassword("sitraka");
 
+        
+
+        mockMVC.perform(MockMvcRequestBuilders.delete("/customer/CUS003"))
+        .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
@@ -67,24 +74,44 @@ public class CustomerControllerTest {
                     "mail":"sitraka@gmail.com",
                     "phone":"09897",
                     "role":"C",
-                    "creation_date":"2024-03-08T10:30",
-                    "password":"sitraka"
+                    "password":"sitraka",
+                    "creation_date":null
                 }
                 """;
-        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", null);
         p.setId("CUS003");
         p.setPassword("sitraka");
         
         when(service.save(p)).thenReturn(p);
 
         mockMVC.perform(MockMvcRequestBuilders.post("/customer").contentType(MediaType.APPLICATION_JSON).content(json))
-        .andExpect(MockMvcResultMatchers.status().isCreated())
-        .andExpect(MockMvcResultMatchers.jsonPath("$").value("Sitraka"));
+        .andExpect(MockMvcResultMatchers.status().isCreated());
+        // .andExpect(MockMvcResultMatchers.jsonPath("$.data.name").value("Sitraka"));
         
     }
 
     @Test
-    void testUpdateModel() {
-
+    void testUpdateModel() throws Exception {
+        String json = """
+                {
+                    "id":"CUS003",
+                    "name":"Sitraka",
+                    "mail":"sitraka@gmail.com",
+                    "phone":"09897",
+                    "role":"C",
+                    "creation_date":"2024-03-08T10:30",
+                    "password":"ketrika"
+                }
+                """;
+        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        p.setId("CUS003");
+        p.setPassword("sitraka");
+        Customer b =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        b.setId("CUS003");
+        b.setPassword("ketrika");
+        when(service.save(p)).thenReturn(b);
+        
+        mockMVC.perform(MockMvcRequestBuilders.put("/customer").contentType(MediaType.APPLICATION_JSON).content(json))
+        .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

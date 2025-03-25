@@ -1,5 +1,6 @@
 package mg.projects.wallet.common;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import mg.projects.wallet.common.baseModel.BaseEntity;
 import mg.projects.wallet.format.ToJsonData;
+import mg.projects.wallet.models.Customer;
 
 public class CommonController<S extends CommonService,T extends BaseEntity>  {
     private final S service;
@@ -28,6 +30,9 @@ public class CommonController<S extends CommonService,T extends BaseEntity>  {
         try {
             // return ResponseEntity.ok(new ToJsonData<>(service.save(model), null));
             T models = (T) service.save(model);
+        //     Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        // p.setId("CUS003");
+        // p.setPassword("sitraka");
             return new ResponseEntity<>(new ToJsonData<>(models, null), org.springframework.http.HttpStatus.CREATED);
             
         } catch (Exception e) {
@@ -49,7 +54,7 @@ public class CommonController<S extends CommonService,T extends BaseEntity>  {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable String id) {
         try {
-            service.deleteById(Integer.parseInt(id));
+            service.deleteById(id);
             return ResponseEntity.ok(new ToJsonData<>("Suppression réussi", null));
         } catch (Exception e) {
             e.printStackTrace();
