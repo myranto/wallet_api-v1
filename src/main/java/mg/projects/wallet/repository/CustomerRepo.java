@@ -9,5 +9,4 @@ import mg.projects.wallet.models.Customer;
 
 public interface CustomerRepo extends JpaRepository<Customer, String>  {
     Optional<Customer> findOneByMail(String mail);
-    
 }

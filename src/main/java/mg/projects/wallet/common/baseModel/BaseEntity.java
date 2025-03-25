@@ -13,6 +13,7 @@ public class BaseEntity extends ConversionService {
     private String id;
     
     @InvalidConversion
+    @Transient
     private Class<?> dto;
     
     
