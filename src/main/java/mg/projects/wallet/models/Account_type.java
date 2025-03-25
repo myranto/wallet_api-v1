@@ -4,10 +4,10 @@ import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import mg.projects.wallet.common.BaseEntity;
+import mg.projects.wallet.dto.AccounTypeDTO;
 
 /*
  * Création de model account type in local
@@ -15,7 +15,6 @@ import mg.projects.wallet.common.BaseEntity;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @Entity(name = "account_type")
 public class Account_type extends BaseEntity{
     @Column
@@ -26,6 +25,14 @@ public class Account_type extends BaseEntity{
     private Timestamp creation_date;
 
     public Account_type() {
+        setDto(AccounTypeDTO.class);
+    }
+
+    public Account_type(String type, String value, Timestamp creation_date) {
+        this.type = type;
+        this.value = value;
+        this.creation_date = creation_date;
+        setDto(AccounTypeDTO.class);
     }
     
 }
