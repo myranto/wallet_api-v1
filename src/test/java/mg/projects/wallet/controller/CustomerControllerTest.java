@@ -83,7 +83,7 @@ public class CustomerControllerTest {
 
         mockMVC.perform(MockMvcRequestBuilders.post("/customer").contentType(MediaType.APPLICATION_JSON).content(json))
         .andExpect(MockMvcResultMatchers.status().isCreated());
-        // .andExpect(MockMvcResultMatchers.jsonPath("$.data.name").value("Sitraka"));
+        // .andExpect(MockMvcResultMatchers.jsonPath("$").value("Sitraka"));
         
     }
 
