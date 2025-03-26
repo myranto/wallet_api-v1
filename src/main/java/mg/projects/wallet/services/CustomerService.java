@@ -13,4 +13,13 @@ public class CustomerService  extends CommonService<Customer, String, CustomerRe
         super(jpa);
     }
 
+    @Override
+    public Customer save(Customer model) {
+        if (model.getPassword()==null) {
+            model.setPassword(model.getName().trim());
+        }
+        return super.save(model);
+    }
+    
+
 }

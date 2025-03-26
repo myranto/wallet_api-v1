@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +15,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import mg.projects.wallet.common.baseModel.DTO;
+import mg.projects.wallet.dto.CustomerDTO;
 import mg.projects.wallet.models.Customer;
 import mg.projects.wallet.repository.CustomerRepo;
 
@@ -42,30 +45,35 @@ public class CustomerServiceTest {
     }
 
     @Test
-    void testFindAll() {
+    void testFindAll() throws InstantiationException, IllegalAccessException, InvocationTargetException {
         Customer customer =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
         customer.setId("CUS003");
         customer.setPassword("sitraka");
         Customer customer2 =new Customer("Valye", "valy@gmail.com","09899", "C", new Timestamp(System.currentTimeMillis()));
-        customer.setId("CUS004");
-        customer.setPassword("valy");
+        customer2.setId("CUS004");
+        customer2.setPassword("valy");
 
         when(repo.findAll()).thenReturn(List.of(customer, customer2));
 
-        List<Customer> list = service.findAll(null);
-        Assertions.assertThat(list).hasSize(2).containsExactly(customer, customer2);
+        List<DTO> list = service.findAll(null);
+        Assertions.assertThat(list).hasSize(2)
+        .satisfiesExactly(
+            dto1 -> Assertions.assertThat(dto1.getId()).isEqualTo(customer.getId()),
+            dto2 -> Assertions.assertThat(dto2.getId()).isEqualTo(customer2.getId())  
+        );
+        // .containsExactly(customer.EntityToDTO(), customer2.EntityToDTO());
     }
 
     @Test
-    void testFindById() {
+    void testFindById() throws InstantiationException, IllegalAccessException, InvocationTargetException {
         Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
         p.setId("CUS003");
         p.setPassword("sitraka");
 
         when(repo.findById("CUS003")).thenReturn(Optional.of(p));
 
-        Customer finded = service.findById("CUS003");
-        assertEquals(p, finded);
+        CustomerDTO finded = (CustomerDTO) service.findById("CUS003");
+        assertEquals(p.EntityToDTO().getId(), finded.getId());
     }
 
     @Test

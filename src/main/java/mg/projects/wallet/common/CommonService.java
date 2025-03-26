@@ -1,11 +1,14 @@
 package mg.projects.wallet.common;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import mg.projects.wallet.common.baseModel.BaseEntity;
+import mg.projects.wallet.common.baseModel.DTO;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,12 +36,13 @@ public class CommonService <T extends BaseEntity,ID,JPA extends JpaRepository<T,
     public void deleteById(ID id){
         jpa.deleteById(id);
     }
-    public T findById(ID id){
-        return jpa.findById(id).orElse(null);
+    public DTO findById(ID id) throws InstantiationException, IllegalAccessException, InvocationTargetException{
+        T finded = jpa.findById(id).orElse(null);
+        return finded.EntityToDTO();
     }
-    public List<T> findAll(String key){
+    public List<DTO> findAll(String key) throws InstantiationException, IllegalAccessException, InvocationTargetException{
         if (key == null || key.equals("")) {
-           return jpa.findAll();
+           return ListEntityToListDto(jpa.findAll());
         }
         return null;
     }
@@ -57,9 +61,31 @@ public class CommonService <T extends BaseEntity,ID,JPA extends JpaRepository<T,
         }
         return new int[]{offset + 1, offset + pageSize};
     }
-    public Page<T> getPaginated(int pageNumber, int pageSize, String key) {
+    /*
+     * Conversion de page entity to page dto
+     * encore à tester une fois à la maison
+     */
+    public Page<DTO> getPaginated(int pageNumber, int pageSize, String key) {
        Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        return jpa.findAll(pageable);
+       Page<T> list = jpa.findAll(pageable);
+       Page<DTO> result = list.map(entity -> {
+        try {
+            return entity.EntityToDTO();
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+            return null;
+        }
+    });
+        return result;
+    }
+
+    // function de conversion d'une liste de entity vers une liste de dto
+    private List<DTO> ListEntityToListDto(List<T> list) throws InstantiationException, IllegalAccessException, InvocationTargetException{
+        List<DTO> result = new ArrayList<DTO>();
+        for (T row : list) {
+            result.add(row.EntityToDTO());
+        }
+        return result;
     }
 
 }

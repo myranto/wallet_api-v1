@@ -44,7 +44,7 @@ public class CustomerControllerTest {
         customer.setId("CUS004");
         customer.setPassword("valy");
         
-        when(service.findAll(null)).thenReturn(List.of(customer, customer2));
+        when(service.findAll(null)).thenReturn(List.of(customer.EntityToDTO(), customer2.EntityToDTO()));
 
         mockMVC.perform(MockMvcRequestBuilders.get("/customer"))
             .andExpect(MockMvcResultMatchers.status().isOk())
@@ -56,7 +56,7 @@ public class CustomerControllerTest {
         Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
         p.setId("CUS003");
         p.setPassword("sitraka");
-        when(service.findById("CUS003")).thenReturn(p);
+        when(service.findById("CUS003")).thenReturn(p.EntityToDTO());
         mockMVC.perform(MockMvcRequestBuilders.get("/customer/CUS003"))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$.data.mail").value("sitraka@gmail.com"));

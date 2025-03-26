@@ -31,7 +31,7 @@ public class AuthController {
      * Controller for forget password in local
      */
     @PostMapping("/reset/password")
-    public ResponseEntity<?> postMethodName(@RequestBody AuthDTO model) {
+    public ResponseEntity<?> resetPassword(@RequestBody AuthDTO model) {
         try {
             return ResponseEntity.ok(new ToJsonData<>(service.resetPassword(model), null));
         } catch (Exception e) {
