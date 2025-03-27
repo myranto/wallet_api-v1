@@ -2,10 +2,7 @@ package mg.projects.wallet.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import mg.projects.wallet.dto.AuthDTO;
 import mg.projects.wallet.format.ToJsonData;
@@ -14,6 +11,7 @@ import mg.projects.wallet.services.AuthService;
 // classe controller servant pour l'authentication
 @RestController
 @RequestMapping("auth")
+@CrossOrigin(methods = {RequestMethod.DELETE, RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.OPTIONS})
 public class AuthController {
     @Autowired
     private AuthService service;
