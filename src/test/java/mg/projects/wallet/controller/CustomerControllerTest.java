@@ -1,5 +1,6 @@
 package mg.projects.wallet.controller;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.sql.Timestamp;
@@ -72,18 +73,18 @@ public class CustomerControllerTest {
                     "phone":"09897",
                     "role":"C",
                     "password":"sitraka",
-                    "creation_date":null
+                    "creation_date":"2024-03-08T10:30"
                 }
                 """;
         Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", null);
         p.setId("CUS003");
         p.setPassword("sitraka");
         
-        when(service.save(p)).thenReturn(p);
+        when(service.save(any())).thenReturn(p);
 
         mockMVC.perform(MockMvcRequestBuilders.post("/customer").contentType(MediaType.APPLICATION_JSON).content(json))
-        .andExpect(MockMvcResultMatchers.status().isCreated());
-        // .andExpect(MockMvcResultMatchers.jsonPath("$").value("Sitraka"));
+        .andExpect(MockMvcResultMatchers.status().isCreated())
+        .andExpect(MockMvcResultMatchers.jsonPath("$.data.name").value("Sitraka"));
         
     }
 
