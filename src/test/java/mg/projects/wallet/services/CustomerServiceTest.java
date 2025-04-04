@@ -77,16 +77,6 @@ public class CustomerServiceTest {
     }
 
     @Test
-    void testGetJpa() {
-
-    }
-
-    @Test
-    void testGetPageRow() {
-
-    }
-
-    @Test
     void testGetPaginated() {
 
     }

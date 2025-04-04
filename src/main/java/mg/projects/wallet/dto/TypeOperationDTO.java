@@ -13,7 +13,7 @@ public class TypeOperationDTO extends DTO{
     
     private String libelle;
     
-    private String value;
+    private String code;
     
     private Timestamp creation_date = new Timestamp(System.currentTimeMillis());
 
@@ -21,9 +21,9 @@ public class TypeOperationDTO extends DTO{
         setEntity(TypeOperation.class);
     }
 
-    public TypeOperationDTO(String libelle, String value, Timestamp creation_date) {
+    public TypeOperationDTO(String libelle, String code, Timestamp creation_date) {
         this.libelle = libelle;
-        this.value = value;
+        this.code = code;
         this.creation_date = creation_date;
         setEntity(TypeOperation.class);
     }
