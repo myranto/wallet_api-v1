@@ -16,16 +16,16 @@ public class TypeOperation extends BaseEntity{
     @Column(nullable = false)
     private String libelle;
     @Column(nullable = false)
-    private String value;
+    private String code;
     @Column
     private Timestamp creation_date = new Timestamp(System.currentTimeMillis());
     
     public TypeOperation() {
         setDto(TypeOperationDTO.class);
     }
-    public TypeOperation(String libelle, String value, Timestamp creation_date) {
+    public TypeOperation(String libelle, String code, Timestamp creation_date) {
         this.libelle = libelle;
-        this.value = value;
+        this.code = code;
         this.creation_date = creation_date;
         setDto(TypeOperationDTO.class);
     }
