@@ -42,7 +42,6 @@ public class CustomerRepoTest {
     @Test
     void testFindAll(){
         List<Customer> list = repo.findAll();
-        System.out.println(list.size());
         assertEquals(3, list.size());
     }
     @Test

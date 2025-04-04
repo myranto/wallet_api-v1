@@ -12,7 +12,7 @@ import mg.projects.wallet.models.TypeCharge;
 public class TypeChargeDTO extends DTO{
     private String libelle;
     
-    private String value;
+    private String code;
     
     private Timestamp creation_date = new Timestamp(System.currentTimeMillis());
 
@@ -20,9 +20,9 @@ public class TypeChargeDTO extends DTO{
         setEntity(TypeCharge.class);
     }
 
-    public TypeChargeDTO(String libelle, String value, Timestamp creation_date) {
+    public TypeChargeDTO(String libelle, String code, Timestamp creation_date) {
         this.libelle = libelle;
-        this.value = value;
+        this.code = code;
         this.creation_date = creation_date;
         setEntity(TypeCharge.class);
     }
