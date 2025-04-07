@@ -35,7 +35,7 @@ public class CustomerServiceTest {
     // }
 
     @Test
-    void testDeleteById() {
+    void testDeleteById() throws Exception {
         // Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
         // p.setId("CUS003");
         // p.setPassword("sitraka");
@@ -65,7 +65,7 @@ public class CustomerServiceTest {
     }
 
     @Test
-    void testFindById() throws InstantiationException, IllegalAccessException, InvocationTargetException {
+    void testFindById() throws Exception {
         Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
         p.setId("CUS003");
         p.setPassword("sitraka");
