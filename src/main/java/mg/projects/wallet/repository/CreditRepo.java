@@ -1,9 +1,9 @@
 package mg.projects.wallet.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 
+import mg.projects.wallet.common.CommonRepository;
 import mg.projects.wallet.models.Credit;
 
-public interface CreditRepo extends JpaRepository<Credit, String> {
+public interface CreditRepo extends CommonRepository<Credit, String> {
 
 }
