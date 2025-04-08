@@ -33,13 +33,13 @@ public class CommonService <T extends BaseEntity,ID,JPA extends CommonRepository
         jpa.delete(model);
     }
     public void deleteById(ID id) throws Exception{
-        T model = jpa.findByIdAndStatus(id, 0).orElseThrow(() -> new Exception("Id introuvable "+id));
+        T model = jpa.findByIdAndStatus(id, 0).orElseThrow(() -> new Exception("Id introuvable: "+id));
         model.setStatus(1);
         jpa.save(model);
         // jpa.deleteById(id);
     }
     public DTO findById(ID id) throws Exception{
-        T finded = jpa.findByIdAndStatus(id, 0).orElseThrow(() -> new Exception("Id introuvable "+id));
+        T finded = jpa.findByIdAndStatus(id, 0).orElseThrow(() -> new Exception("Id introuvable: "+id));
         return finded.EntityToDTO();
     }
     public List<DTO> findAll(String key) throws InstantiationException, IllegalAccessException, InvocationTargetException{
