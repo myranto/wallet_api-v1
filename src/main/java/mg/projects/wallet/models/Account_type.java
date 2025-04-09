@@ -21,17 +21,14 @@ public class Account_type extends BaseEntity{
     private String type;
     @Column
     private String code;
-    @Column(name = "creation_date")
-    private Timestamp creationdate = new Timestamp(System.currentTimeMillis());
 
     public Account_type() {
         setDto(AccounTypeDTO.class);
     }
 
-    public Account_type(String type, String code, Timestamp creationdate) {
+    public Account_type(String type, String code) {
         this.type = type;
         this.code = code;
-        this.creationdate = creationdate;
         setDto(AccounTypeDTO.class);
     }
     

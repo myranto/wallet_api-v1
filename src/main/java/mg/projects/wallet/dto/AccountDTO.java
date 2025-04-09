@@ -15,18 +15,17 @@ public class AccountDTO extends DTO {
     private Timestamp dateamount;
     private String customer_id;
     private String type_id;
-    private Timestamp creationdate ;
+    
     private AccounTypeDTO type;
     public AccountDTO() {
         setEntity(Account.class);
     }
     public AccountDTO(BigDecimal currentamount, Timestamp dateamount, String customer_id, String type_id,
-            Timestamp creationdate, AccounTypeDTO type) {
+         AccounTypeDTO type) {
         this.currentamount = currentamount;
         this.dateamount = dateamount;
         this.customer_id = customer_id;
         this.type_id = type_id;
-        this.creationdate = creationdate;
         this.type = type;
         setEntity(Account.class);
     }

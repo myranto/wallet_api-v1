@@ -28,7 +28,7 @@ public class CustomerControllerTest {
 
     @Test
     void testDeleteById() throws Exception {
-        Customer customer =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        Customer customer =new Customer("Sitraka", "sitraka@gmail.com","09897", "C");
         customer.setId("CUS003");
         customer.setPassword("sitraka");
 
@@ -38,10 +38,10 @@ public class CustomerControllerTest {
 
     @Test
     void testFindAllModel() throws Exception {
-        Customer customer =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        Customer customer =new Customer("Sitraka", "sitraka@gmail.com","09897", "C");
         customer.setId("CUS003");
         customer.setPassword("sitraka");
-        Customer customer2 =new Customer("Valye", "valy@gmail.com","09899", "C", new Timestamp(System.currentTimeMillis()));
+        Customer customer2 =new Customer("Valye", "valy@gmail.com","09899", "C");
         customer.setId("CUS004");
         customer.setPassword("valy");
         
@@ -54,7 +54,7 @@ public class CustomerControllerTest {
 
     @Test
     void testFindById() throws Exception {
-        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C");
         p.setId("CUS003");
         p.setPassword("sitraka");
         when(service.findById("CUS003")).thenReturn(p.EntityToDTO());
@@ -101,10 +101,10 @@ public class CustomerControllerTest {
                     "password":"ketrika"
                 }
                 """;
-        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C");
         p.setId("CUS003");
         p.setPassword("sitraka");
-        Customer b =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        Customer b =new Customer("Sitraka", "sitraka@gmail.com","09897", "C");
         b.setId("CUS003");
         b.setPassword("ketrika");
         when(service.save(p)).thenReturn(b);

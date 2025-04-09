@@ -46,7 +46,7 @@ public class CustomerRepoTest {
     }
     @Test
     void testSaveAndUpdate(){
-        Customer customer =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        Customer customer =new Customer("Sitraka", "sitraka@gmail.com","09897", "C");
         customer.setId("CUS003");
         customer.setPassword("sitraka");
         Customer vao = repo.save(customer);

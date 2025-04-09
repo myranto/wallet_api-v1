@@ -36,7 +36,7 @@ public class CustomerServiceTest {
 
     @Test
     void testDeleteById() throws Exception {
-        // Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        // Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C");
         // p.setId("CUS003");
         // p.setPassword("sitraka");
         service.deleteById("CUS003");
@@ -46,10 +46,10 @@ public class CustomerServiceTest {
 
     @Test
     void testFindAll() throws InstantiationException, IllegalAccessException, InvocationTargetException {
-        Customer customer =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        Customer customer =new Customer("Sitraka", "sitraka@gmail.com","09897", "C");
         customer.setId("CUS003");
         customer.setPassword("sitraka");
-        Customer customer2 =new Customer("Valye", "valy@gmail.com","09899", "C", new Timestamp(System.currentTimeMillis()));
+        Customer customer2 =new Customer("Valye", "valy@gmail.com","09899", "C");
         customer2.setId("CUS004");
         customer2.setPassword("valy");
 
@@ -66,7 +66,7 @@ public class CustomerServiceTest {
 
     @Test
     void testFindById() throws Exception {
-        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C");
         p.setId("CUS003");
         p.setPassword("sitraka");
 
@@ -83,7 +83,7 @@ public class CustomerServiceTest {
 
     @Test
     void testSaveAndUpdate() {
-        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C");
         p.setId("CUS003");
         p.setPassword("sitraka");
         when(repo.save(p)).thenReturn(p);

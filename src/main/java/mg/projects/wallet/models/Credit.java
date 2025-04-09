@@ -28,9 +28,6 @@ public class Credit extends BaseEntity {
     private String account_id;
     @Column(nullable = false)
     private String operation_id;
-    @Column(name = "creation_date")
-    private Timestamp creationdate = new Timestamp(System.currentTimeMillis());
-
     @ManyToOne
     @JoinColumn(name = "account_id", insertable = false, updatable = false)
     private Account_type account;
@@ -44,7 +41,7 @@ public class Credit extends BaseEntity {
     }
 
     public Credit(String customer_id, Timestamp start_date, Timestamp end_date, BigDecimal amount, String account_id,
-            String operation_id, Timestamp creationdate,
+            String operation_id, 
             Account_type account, TypeOperation toperation) {
         this.customer_id = customer_id;
         this.start_date = start_date;
@@ -52,7 +49,6 @@ public class Credit extends BaseEntity {
         this.amount = amount;
         this.account_id = account_id;
         this.operation_id = operation_id;
-        this.creationdate = creationdate;
         this.account = account;
         this.toperation = toperation;
         setDto(CreditDTO.class);

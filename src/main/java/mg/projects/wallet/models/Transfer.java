@@ -28,9 +28,6 @@ public class Transfer extends BaseEntity {
     private Timestamp start_date;
     @Column
     private Timestamp end_date;
-    @Column(name = "creation_date")
-    private Timestamp creationdate = new Timestamp(System.currentTimeMillis());
-
     @ManyToOne
     @JoinColumn(name = "debit_account", insertable = false, updatable = false)
     private Account_type debit;
@@ -45,14 +42,13 @@ public class Transfer extends BaseEntity {
 
     public Transfer(String debit_account, String credit_account, BigDecimal amount, Timestamp start_date,
             Timestamp end_date,
-            Timestamp creationdate, String customer,
+             String customer,
             Account_type debit, Account_type credit) {
         this.debit_account = debit_account;
         this.credit_account = credit_account;
         this.amount = amount;
         this.start_date = start_date;
         this.end_date = end_date;
-        this.creationdate = creationdate;
         this.customer = customer;
         this.debit = debit;
         this.credit = credit;

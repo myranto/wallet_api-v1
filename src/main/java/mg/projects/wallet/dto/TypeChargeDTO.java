@@ -14,16 +14,14 @@ public class TypeChargeDTO extends DTO{
     
     private String code;
     
-    private Timestamp creationdate = new Timestamp(System.currentTimeMillis());
 
     public TypeChargeDTO() {
         setEntity(TypeCharge.class);
     }
 
-    public TypeChargeDTO(String libelle, String code, Timestamp creationdate) {
+    public TypeChargeDTO(String libelle, String code) {
         this.libelle = libelle;
         this.code = code;
-        this.creationdate = creationdate;
         setEntity(TypeCharge.class);
     }
     

@@ -28,10 +28,6 @@ public class Customer extends BaseEntity{
 
     @Column(nullable = false)
     private String role;
-
-    @Column(name = "creation_date")
-    private Timestamp creationdate = new Timestamp(System.currentTimeMillis());
-    
     @Column
     @InvalidConversion
     private String password;
@@ -39,29 +35,27 @@ public class Customer extends BaseEntity{
     public Customer() {
         setDto(CustomerDTO.class);
     }
-    public Customer(String name, String mail, String phone, String role, Timestamp creationdate) {
+    public Customer(String name, String mail, String phone, String role) {
         setDto(CustomerDTO.class);
         this.name = name;
         this.mail = mail;
         this.phone = phone;
         this.role = role;
-        this.creationdate = creationdate;
     }
     
-    public Customer(String name, String mail, String phone, String role, Timestamp creationdate, String password) {
+    public Customer(String name, String mail, String phone, String role, String password) {
         setDto(CustomerDTO.class);
         this.name = name;
         this.mail = mail;
         this.phone = phone;
         this.role = role;
-        this.creationdate = creationdate;
         this.password = password;
     }
 
     @Override
     public String toString() {
         return "Customer [ customer , id="+this.getId()+", name=" + name + ", mail=" + mail + ", phone=" + phone
-                + ", role=" + role + ", creationdate=" + creationdate + ", password=" + password + "]";
+                + ", role=" + role + ", password=" + password + "]";
     }
 
    

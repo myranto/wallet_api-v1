@@ -24,8 +24,6 @@ public class Account extends BaseEntity{
     private String customer_id;
     @Column(nullable = false)
     private String type_id;
-    @Column(name = "creation_date")
-    private Timestamp creationdate = new Timestamp(System.currentTimeMillis());
     // partie récupération de donnée uniquement
     @ManyToOne
     @JoinColumn(name = "type_id", insertable = false, updatable = false)
@@ -35,19 +33,18 @@ public class Account extends BaseEntity{
         setDto(AccountDTO.class);
     }
     public Account(BigDecimal currentamount, Timestamp dateamount, String customer_id, String type_id,
-            Timestamp creationdate, Account_type type) {
+            Account_type type) {
         this.currentamount = currentamount;
         this.dateamount = dateamount;
         this.customer_id = customer_id;
         this.type_id = type_id;
-        this.creationdate = creationdate;
         this.type = type;
         setDto(AccountDTO.class);
     }
     @Override
     public String toString() {
         return "Account [currentamount=" + currentamount + ", dateamount=" + dateamount + ", customer_id="
-                + customer_id + ", type_id=" + type_id + ", creationdate=" + creationdate + ", getId()=" + getId()
+                + customer_id + ", type_id=" + type_id + ", getId()=" + getId()
                 + "]";
     }
     
