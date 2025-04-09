@@ -15,16 +15,14 @@ public class AccounTypeDTO extends DTO {
     
     private String code;
     
-    private Timestamp creation_date;
 
     public AccounTypeDTO() {
         setEntity(Account_type.class);
     }
 
-    public AccounTypeDTO(String type, String code, Timestamp creation_date) {
+    public AccounTypeDTO(String type, String code) {
         this.type = type;
         this.code = code;
-        this.creation_date = creation_date;
         setEntity(Account_type.class);
     }
     

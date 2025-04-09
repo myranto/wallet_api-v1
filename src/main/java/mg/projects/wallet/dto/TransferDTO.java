@@ -25,7 +25,6 @@ public class TransferDTO extends DTO {
 
     private Timestamp end_date;
 
-    private Timestamp creation_date;
     private AccounTypeDTO debit;
     private AccounTypeDTO credit;
 
@@ -35,14 +34,13 @@ public class TransferDTO extends DTO {
 
     public TransferDTO(String debit_account, String credit_account, BigDecimal amount, Timestamp start_date,
             Timestamp end_date,
-            Timestamp creation_date, String customer,
+            String customer,
             AccounTypeDTO debit, AccounTypeDTO credit) {
         this.debit_account = debit_account;
         this.credit_account = credit_account;
         this.amount = amount;
         this.start_date = start_date;
         this.end_date = end_date;
-        this.creation_date = creation_date;
         this.customer = customer;
         this.debit = debit;
         this.credit = credit;

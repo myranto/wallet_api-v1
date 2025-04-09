@@ -30,8 +30,6 @@ public class Charge extends BaseEntity {
     private String account_id;
     @Column(nullable = false)
     private String operation_id;
-    @Column(nullable = false)
-    private Timestamp creation_date = new Timestamp(System.currentTimeMillis());
 
     @ManyToOne
     @JoinColumn(name = "account_id", insertable = false, updatable = false)
@@ -48,7 +46,7 @@ public class Charge extends BaseEntity {
     }
 
     public Charge(String customer_id, Timestamp start_date, Timestamp end_date, BigDecimal amount, String type_charge,
-            String account_id, String operation_id, Timestamp creation_date,
+            String account_id, String operation_id,
             Account_type account,TypeCharge tcharge,TypeOperation toperation
     ) {
         this.customer_id = customer_id;
@@ -58,7 +56,6 @@ public class Charge extends BaseEntity {
         this.type_charge = type_charge;
         this.account_id = account_id;
         this.operation_id = operation_id;
-        this.creation_date = creation_date;
         this.account = account;
         this.tcharge = tcharge;
         this.toperation = toperation;

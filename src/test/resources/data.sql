@@ -5,6 +5,7 @@ create  table customer(
     phone varchar(20) not null,
     role varchar(1) not null,
     creation_date timestamp not null default current_timestamp,
+    status int default 0,
     password varchar(100) not null
 );
 
@@ -12,6 +13,7 @@ create  table account_type(
     id varchar(30)  primary key not null,
     type varchar(60) NOT NULL unique,
     code varchar(3) not null unique,
+    status int default 0,
     creation_date timestamp not null default current_timestamp
 );
 

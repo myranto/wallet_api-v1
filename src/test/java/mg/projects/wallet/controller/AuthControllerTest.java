@@ -35,7 +35,7 @@ public class AuthControllerTest {
                     "password":"sitraka"
                 }
                 """;
-        Customer customer =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        Customer customer =new Customer("Sitraka", "sitraka@gmail.com","09897", "C");
         customer.setId("CUS003");
         customer.setPassword("sitraka");
         

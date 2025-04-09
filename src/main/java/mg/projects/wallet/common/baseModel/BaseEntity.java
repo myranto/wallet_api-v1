@@ -1,6 +1,7 @@
 package mg.projects.wallet.common.baseModel;
 
 import java.lang.reflect.InvocationTargetException;
+import java.sql.Timestamp;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -20,6 +21,8 @@ public class BaseEntity extends ConversionService {
 
     @Column
     private int status;
+    @Column(name = "creation_date")
+    private Timestamp creationdate = new Timestamp(System.currentTimeMillis());
     
     @InvalidConversion
     @Transient

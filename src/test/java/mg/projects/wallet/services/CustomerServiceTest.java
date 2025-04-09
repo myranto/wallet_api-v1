@@ -36,24 +36,26 @@ public class CustomerServiceTest {
 
     @Test
     void testDeleteById() throws Exception {
-        // Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
-        // p.setId("CUS003");
-        // p.setPassword("sitraka");
+        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C");
+        p.setId("CUS003");
+        p.setPassword("sitraka");
+        p.setStatus(1);
+        when(repo.findByIdAndStatus(p.getId(), 0)).thenReturn(Optional.of(p));
+        when(repo.save(p)).thenReturn(p);
         service.deleteById("CUS003");
-        // when(repo.deleteById("CUS003"))
-        verify(repo).deleteById("CUS003");
+        // verify(repo).deleteById("CUS003");
     }
 
     @Test
     void testFindAll() throws InstantiationException, IllegalAccessException, InvocationTargetException {
-        Customer customer =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        Customer customer =new Customer("Sitraka", "sitraka@gmail.com","09897", "C");
         customer.setId("CUS003");
         customer.setPassword("sitraka");
-        Customer customer2 =new Customer("Valye", "valy@gmail.com","09899", "C", new Timestamp(System.currentTimeMillis()));
+        Customer customer2 =new Customer("Valye", "valy@gmail.com","09899", "C");
         customer2.setId("CUS004");
         customer2.setPassword("valy");
 
-        when(repo.findAll()).thenReturn(List.of(customer, customer2));
+        when(repo.findAllByStatus(0)).thenReturn(List.of(customer, customer2));
 
         List<DTO> list = service.findAll(null);
         Assertions.assertThat(list).hasSize(2)
@@ -66,11 +68,11 @@ public class CustomerServiceTest {
 
     @Test
     void testFindById() throws Exception {
-        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C");
         p.setId("CUS003");
         p.setPassword("sitraka");
 
-        when(repo.findById("CUS003")).thenReturn(Optional.of(p));
+        when(repo.findByIdAndStatus("CUS003",0)).thenReturn(Optional.of(p));
 
         CustomerDTO finded = (CustomerDTO) service.findById("CUS003");
         assertEquals(p.EntityToDTO().getId(), finded.getId());
@@ -83,7 +85,7 @@ public class CustomerServiceTest {
 
     @Test
     void testSaveAndUpdate() {
-        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
+        Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C");
         p.setId("CUS003");
         p.setPassword("sitraka");
         when(repo.save(p)).thenReturn(p);

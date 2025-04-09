@@ -17,16 +17,13 @@ public class TypeCharge extends BaseEntity {
     private String libelle;
     @Column(nullable = false)
     private String code;
-    @Column(nullable = false)
-    private Timestamp creation_date = new Timestamp(System.currentTimeMillis());
 
     public TypeCharge() {
         setDto(TypeChargeDTO.class);
     }
-    public TypeCharge(String libelle, String code, Timestamp creation_date) {
+    public TypeCharge(String libelle, String code) {
         this.libelle = libelle;
         this.code = code;
-        this.creation_date = creation_date;
         setDto(TypeChargeDTO.class);
     }
     

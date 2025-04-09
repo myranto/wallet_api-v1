@@ -12,14 +12,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mg.projects.wallet.common.baseModel.BaseEntity;
+import mg.projects.wallet.common.baseModel.DTO;
 import mg.projects.wallet.format.ToJsonData;
+
 /*
  * Classe dont tous les controller entity réalisant un crud
  * devront hériter pour ne pas avoir de répétition de code
  * et avoir une performance inouie
  */
-public class CommonController<S extends CommonService,T extends BaseEntity>  {
+public class CommonController<S extends CommonService, T extends BaseEntity> {
     private final S service;
+
     public CommonController(S service) {
         this.service = service;
     }
@@ -27,19 +30,22 @@ public class CommonController<S extends CommonService,T extends BaseEntity>  {
     public S getService() {
         return service;
     }
+
     @PostMapping("")
     public ResponseEntity<?> saveModel(@RequestBody T model) {
         try {
             // return ResponseEntity.ok(new ToJsonData<>(service.save(model), null));
             T models = (T) service.save(model);
-        //     Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new Timestamp(System.currentTimeMillis()));
-        // p.setId("CUS003");
-        // p.setPassword("sitraka");
+            // Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", new
+            // Timestamp(System.currentTimeMillis()));
+            // p.setId("CUS003");
+            // p.setPassword("sitraka");
             return new ResponseEntity<>(new ToJsonData<>(models, null), org.springframework.http.HttpStatus.CREATED);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()), org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()),
+                    org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
@@ -50,9 +56,11 @@ public class CommonController<S extends CommonService,T extends BaseEntity>  {
             return ResponseEntity.ok(new ToJsonData<>("Modification réussi", null));
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()), org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()),
+                    org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
         }
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable String id) {
         try {
@@ -60,7 +68,8 @@ public class CommonController<S extends CommonService,T extends BaseEntity>  {
             return ResponseEntity.ok(new ToJsonData<>("Suppression réussi", null));
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>(new ToJsonData<>(null, "Suppression impossible"), org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(new ToJsonData<>(null, "Suppression impossible"),
+                    org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
@@ -72,35 +81,43 @@ public class CommonController<S extends CommonService,T extends BaseEntity>  {
             return ResponseEntity.ok(new ToJsonData<>(list, null));
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()), org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()),
+                    org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
         }
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> findEntityByID(@PathVariable(value = "id") String id) {
         try {
             return ResponseEntity.ok(new ToJsonData<>(service.findById(id), null));
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()), org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()),
+                    org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
     @GetMapping("/all/{page}/{size}")
-    public ResponseEntity<?> findAllpaginateModel(@PathVariable("page") int page, @PathVariable("size") int size, @RequestParam(value = "key", required = false) String key) {
+    public ResponseEntity<?> findAllpaginateModel(@PathVariable("page") int page, @PathVariable("size") int size,
+            @RequestParam(name = "field", defaultValue = "creationdate", required = false) String field,
+            @RequestParam(name = "sort", defaultValue = "asc", required = false) String sort) {
         try {
-            return ResponseEntity.ok(new ToJsonData<>(service.getPaginated(page, size, key), null));
+            return ResponseEntity.ok(new ToJsonData<>(service.getPaginated(page, size, field, sort), null));
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()), org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()),
+                    org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
         }
     }
+
     @GetMapping("/count")
     public ResponseEntity<?> countAllModel() {
         try {
             return ResponseEntity.ok(new ToJsonData<>(getService().getJpa().count(), null));
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()), org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()),
+                    org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
         }
     }
 }

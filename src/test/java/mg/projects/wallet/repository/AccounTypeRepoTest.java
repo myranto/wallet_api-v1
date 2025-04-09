@@ -37,7 +37,7 @@ public class AccounTypeRepoTest {
     }
     @Test
     void testSaveAndUpdate(){
-        Account_type type = new Account_type("Staff", "STA", new Timestamp(System.currentTimeMillis()));
+        Account_type type = new Account_type("Staff", "STA");
         type.setId("ACT002");
 
         Account_type saved = repo.save(type);
