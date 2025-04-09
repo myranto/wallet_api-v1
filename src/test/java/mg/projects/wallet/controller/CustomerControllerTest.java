@@ -73,7 +73,7 @@ public class CustomerControllerTest {
                     "phone":"09897",
                     "role":"C",
                     "password":"sitraka",
-                    "creation_date":"2024-03-08T10:30"
+                    "creationdate":"2024-03-08T10:30"
                 }
                 """;
         Customer p =new Customer("Sitraka", "sitraka@gmail.com","09897", "C", null);
@@ -97,7 +97,7 @@ public class CustomerControllerTest {
                     "mail":"sitraka@gmail.com",
                     "phone":"09897",
                     "role":"C",
-                    "creation_date":"2024-03-08T10:30",
+                    "creationdate":"2024-03-08T10:30",
                     "password":"ketrika"
                 }
                 """;

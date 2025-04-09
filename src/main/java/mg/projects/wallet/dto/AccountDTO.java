@@ -11,22 +11,22 @@ import mg.projects.wallet.models.Account;
 @Getter
 @Setter
 public class AccountDTO extends DTO {
-    private BigDecimal current_amount;
-    private Timestamp date_amount;
+    private BigDecimal currentamount;
+    private Timestamp dateamount;
     private String customer_id;
     private String type_id;
-    private Timestamp creation_date ;
+    private Timestamp creationdate ;
     private AccounTypeDTO type;
     public AccountDTO() {
         setEntity(Account.class);
     }
-    public AccountDTO(BigDecimal current_amount, Timestamp date_amount, String customer_id, String type_id,
-            Timestamp creation_date, AccounTypeDTO type) {
-        this.current_amount = current_amount;
-        this.date_amount = date_amount;
+    public AccountDTO(BigDecimal currentamount, Timestamp dateamount, String customer_id, String type_id,
+            Timestamp creationdate, AccounTypeDTO type) {
+        this.currentamount = currentamount;
+        this.dateamount = dateamount;
         this.customer_id = customer_id;
         this.type_id = type_id;
-        this.creation_date = creation_date;
+        this.creationdate = creationdate;
         this.type = type;
         setEntity(Account.class);
     }

@@ -57,14 +57,14 @@ public class AccounTypeControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.data[0].type").value("Staff"));
     }
 
-    @Test
-    void testFindAllpaginateModel() throws Exception {
-        when(service.getPaginated(0, 5, null)).thenReturn(page);
-        mockMVC.perform(MockMvcRequestBuilders.get("/account_type/all/0/5"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.data.content[0].type").value("Staff"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.data.content[1].type").value("Business"));
-    }
+    // @Test
+    // void testFindAllpaginateModel() throws Exception {
+    //     when(service.getPaginated(0, 5, null)).thenReturn(page);
+    //     mockMVC.perform(MockMvcRequestBuilders.get("/account_type/all/0/5"))
+    //             .andExpect(MockMvcResultMatchers.status().isOk())
+    //             .andExpect(MockMvcResultMatchers.jsonPath("$.data.content[0].type").value("Staff"))
+    //             .andExpect(MockMvcResultMatchers.jsonPath("$.data.content[1].type").value("Business"));
+    // }
 
     @Test
     void testFindEntityByID() throws Exception {

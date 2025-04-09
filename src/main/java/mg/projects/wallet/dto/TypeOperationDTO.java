@@ -15,16 +15,16 @@ public class TypeOperationDTO extends DTO{
     
     private String code;
     
-    private Timestamp creation_date = new Timestamp(System.currentTimeMillis());
+    private Timestamp creationdate = new Timestamp(System.currentTimeMillis());
 
     public TypeOperationDTO() {
         setEntity(TypeOperation.class);
     }
 
-    public TypeOperationDTO(String libelle, String code, Timestamp creation_date) {
+    public TypeOperationDTO(String libelle, String code, Timestamp creationdate) {
         this.libelle = libelle;
         this.code = code;
-        this.creation_date = creation_date;
+        this.creationdate = creationdate;
         setEntity(TypeOperation.class);
     }
     

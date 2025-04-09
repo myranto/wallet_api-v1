@@ -23,7 +23,7 @@ public class CreditDTO extends DTO{
     
     private String operation_id;
     
-    private Timestamp creation_date;
+    private Timestamp creationdate;
     private AccounTypeDTO account;
     private TypeOperationDTO toperation;
 
@@ -32,7 +32,7 @@ public class CreditDTO extends DTO{
     }
 
     public CreditDTO(String customer_id, Timestamp start_date, Timestamp end_date, BigDecimal amount, String account_id,
-            String operation_id, Timestamp creation_date,
+            String operation_id, Timestamp creationdate,
             AccounTypeDTO account,TypeOperationDTO toperation
         ) {
         this.customer_id = customer_id;
@@ -41,7 +41,7 @@ public class CreditDTO extends DTO{
         this.amount = amount;
         this.account_id = account_id;
         this.operation_id = operation_id;
-        this.creation_date = creation_date;
+        this.creationdate = creationdate;
         this.account = account;
         this.toperation = toperation;
         setEntity(Credit.class);

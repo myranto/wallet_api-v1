@@ -4,7 +4,7 @@ create  table customer(
     mail varchar(100) not null unique,
     phone varchar(20) not null,
     role varchar(1) not null,
-    creation_date timestamp not null default current_timestamp,
+    creationdate timestamp not null default current_timestamp,
     password varchar(100) not null
 );
 
@@ -12,7 +12,7 @@ create  table account_type(
     id varchar(30)  primary key not null,
     type varchar(60) NOT NULL unique,
     code varchar(3) not null unique,
-    creation_date timestamp not null default current_timestamp
+    creationdate timestamp not null default current_timestamp
 );
 
 insert into customer(id,
@@ -20,7 +20,7 @@ name,
 mail,
 phone,
 role,
-creation_date,
+creationdate,
 password) values
  ('CUS001','My Ranto', 'my.randrianantoandro@gmail.com', '0348549237','A',current_timestamp,'myranto'),
  ('CUS002','Larry Hasinjato', 'larry.fah@gmail.com', '0346580050','C',current_timestamp,'Larry'),

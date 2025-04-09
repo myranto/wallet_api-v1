@@ -17,23 +17,23 @@ public class CustomerDTO extends DTO{
     private String phone;
     private String role;
     private String password;
-    private Timestamp creation_date;
+    private Timestamp creationdate;
     public CustomerDTO(){
         this.setEntity(Customer.class);
     }
-    public CustomerDTO(String name, String mail, String phone, String role, Timestamp creation_date) {
+    public CustomerDTO(String name, String mail, String phone, String role, Timestamp creationdate) {
         this.name = name;
         this.mail = mail;
         this.phone = phone;
         this.role = role;
-        this.creation_date = creation_date;
+        this.creationdate = creationdate;
         this.setEntity(Customer.class);
     }
 
     @Override
     public String toString() {
         return "CustomerDTO [ DTO,  id="+this.getId()+", name=" + name + ", mail=" + mail + ", phone="
-                + phone + ", role=" + role + ", password=" + password + ", creation_date=" + creation_date + "]";
+                + phone + ", role=" + role + ", password=" + password + ", creationdate=" + creationdate + "]";
     }
     
     public static void main(String[] args) throws InstantiationException, IllegalAccessException, InvocationTargetException {

@@ -26,7 +26,7 @@ public class ChargeDTo extends DTO{
     
     private String operation_id;
     
-    private Timestamp creation_date;
+    private Timestamp creationdate;
     private AccounTypeDTO account;
     private TypeChargeDTO tcharge;
     private TypeOperationDTO toperation;
@@ -36,7 +36,7 @@ public class ChargeDTo extends DTO{
     }
 
     public ChargeDTo(String customer_id, Timestamp start_date, Timestamp end_date, BigDecimal amount,
-            String type_charge, String account_id, String operation_id, Timestamp creation_date,
+            String type_charge, String account_id, String operation_id, Timestamp creationdate,
             AccounTypeDTO account,TypeChargeDTO tcharge,TypeOperationDTO toperation
             ) {
         this.customer_id = customer_id;
@@ -46,7 +46,7 @@ public class ChargeDTo extends DTO{
         this.type_charge = type_charge;
         this.account_id = account_id;
         this.operation_id = operation_id;
-        this.creation_date = creation_date;
+        this.creationdate = creationdate;
         this.account = account;
         this.tcharge = tcharge;
         this.toperation = toperation;

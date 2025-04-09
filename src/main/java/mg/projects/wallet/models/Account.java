@@ -16,16 +16,16 @@ import mg.projects.wallet.dto.AccountDTO;
 @Getter
 @Setter
 public class Account extends BaseEntity{
-    @Column
-    private BigDecimal current_amount;
-    @Column
-    private Timestamp date_amount;
+    @Column(name = "current_amount")
+    private BigDecimal currentamount;
+    @Column(name = "date_amount")
+    private Timestamp dateamount;
     @Column(nullable = false)
     private String customer_id;
     @Column(nullable = false)
     private String type_id;
-    @Column
-    private Timestamp creation_date = new Timestamp(System.currentTimeMillis());
+    @Column(name = "creation_date")
+    private Timestamp creationdate = new Timestamp(System.currentTimeMillis());
     // partie récupération de donnée uniquement
     @ManyToOne
     @JoinColumn(name = "type_id", insertable = false, updatable = false)
@@ -34,20 +34,20 @@ public class Account extends BaseEntity{
     public Account() {
         setDto(AccountDTO.class);
     }
-    public Account(BigDecimal current_amount, Timestamp date_amount, String customer_id, String type_id,
-            Timestamp creation_date, Account_type type) {
-        this.current_amount = current_amount;
-        this.date_amount = date_amount;
+    public Account(BigDecimal currentamount, Timestamp dateamount, String customer_id, String type_id,
+            Timestamp creationdate, Account_type type) {
+        this.currentamount = currentamount;
+        this.dateamount = dateamount;
         this.customer_id = customer_id;
         this.type_id = type_id;
-        this.creation_date = creation_date;
+        this.creationdate = creationdate;
         this.type = type;
         setDto(AccountDTO.class);
     }
     @Override
     public String toString() {
-        return "Account [current_amount=" + current_amount + ", date_amount=" + date_amount + ", customer_id="
-                + customer_id + ", type_id=" + type_id + ", creation_date=" + creation_date + ", getId()=" + getId()
+        return "Account [currentamount=" + currentamount + ", dateamount=" + dateamount + ", customer_id="
+                + customer_id + ", type_id=" + type_id + ", creationdate=" + creationdate + ", getId()=" + getId()
                 + "]";
     }
     
