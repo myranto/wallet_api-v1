@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.Setter;
 import mg.projects.wallet.common.baseModel.DTO;
+import mg.projects.wallet.models.Account_type;
 import mg.projects.wallet.models.Transfer;
 
 @Getter
@@ -25,6 +26,8 @@ public class TransferDTO extends DTO {
     private Timestamp end_date;
 
     private Timestamp creation_date;
+    private AccounTypeDTO debit;
+    private AccounTypeDTO credit;
 
     public TransferDTO() {
         setEntity(Transfer.class);
@@ -32,7 +35,8 @@ public class TransferDTO extends DTO {
 
     public TransferDTO(String debit_account, String credit_account, BigDecimal amount, Timestamp start_date,
             Timestamp end_date,
-            Timestamp creation_date, String customer) {
+            Timestamp creation_date, String customer,
+            AccounTypeDTO debit, AccounTypeDTO credit) {
         this.debit_account = debit_account;
         this.credit_account = credit_account;
         this.amount = amount;
@@ -40,6 +44,8 @@ public class TransferDTO extends DTO {
         this.end_date = end_date;
         this.creation_date = creation_date;
         this.customer = customer;
+        this.debit = debit;
+        this.credit = credit;
         setEntity(Transfer.class);
     }
 

@@ -6,6 +6,9 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Comparator;
 
+import mg.projects.wallet.common.baseModel.BaseEntity;
+import mg.projects.wallet.common.baseModel.DTO;
+
 public class ConversionService{
     /*
      * first = l'objet de retour
@@ -25,7 +28,15 @@ public class ConversionService{
         Arrays.sort(getters, Comparator.comparing(Method::getName));
         Arrays.sort(setters, Comparator.comparing(Method::getName));
         for (int i = 0; i < getters.length; i++) {
-            setters[i].invoke(result, getters[i].invoke(second));
+            Object result_get = getters[i].invoke(second);
+            if(result_get instanceof DTO){
+                DTO temp = (DTO) result_get;
+                setters[i].invoke(result, temp.dtoToBaseEntity());
+            }else if (result_get instanceof BaseEntity) {
+                BaseEntity temp = (BaseEntity) result_get;
+                setters[i].invoke(result, temp.EntityToDTO());
+            }else
+                setters[i].invoke(result, result_get);
         }
         return result;
     }

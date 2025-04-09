@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 import mg.projects.wallet.common.baseModel.BaseEntity;
@@ -29,13 +31,26 @@ public class Charge extends BaseEntity {
     @Column(nullable = false)
     private String operation_id;
     @Column(nullable = false)
-    private Timestamp creation_date= new Timestamp(System.currentTimeMillis());
+    private Timestamp creation_date = new Timestamp(System.currentTimeMillis());
+
+    @ManyToOne
+    @JoinColumn(name = "account_id", insertable = false, updatable = false)
+    private Account_type account;
+    @ManyToOne
+    @JoinColumn(name = "type_charge", insertable = false, updatable = false)
+    private TypeCharge tcharge;
+    @ManyToOne
+    @JoinColumn(name = "operation_id", insertable = false, updatable = false)
+    private TypeOperation toperation;
 
     public Charge() {
         setDto(ChargeDTo.class);
     }
+
     public Charge(String customer_id, Timestamp start_date, Timestamp end_date, BigDecimal amount, String type_charge,
-            String account_id, String operation_id, Timestamp creation_date) {
+            String account_id, String operation_id, Timestamp creation_date,
+            Account_type account,TypeCharge tcharge,TypeOperation toperation
+    ) {
         this.customer_id = customer_id;
         this.start_date = start_date;
         this.end_date = end_date;
@@ -44,6 +59,9 @@ public class Charge extends BaseEntity {
         this.account_id = account_id;
         this.operation_id = operation_id;
         this.creation_date = creation_date;
+        this.account = account;
+        this.tcharge = tcharge;
+        this.toperation = toperation;
         setDto(ChargeDTo.class);
     }
     
