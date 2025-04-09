@@ -35,7 +35,7 @@ public class CustomerRepoTest {
     }
     @Test
     void shouldFindOneById(){
-        Customer finded = repo.findById("CUS002").orElse(repo.findOneByMail("larry.fah@gmail.com").orElse(null));
+        Customer finded = repo.findByIdAndStatus("CUS002", 0).orElse(repo.findOneByMail("larry.fah@gmail.com").orElse(null));
         assertEquals("larry.fah@gmail.com", finded.getMail());
     }
 
