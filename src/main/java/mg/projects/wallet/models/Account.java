@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 import mg.projects.wallet.common.baseModel.BaseEntity;
@@ -24,17 +26,22 @@ public class Account extends BaseEntity{
     private String type_id;
     @Column
     private Timestamp creation_date = new Timestamp(System.currentTimeMillis());
+    // partie récupération de donnée uniquement
+    @ManyToOne
+    @JoinColumn(name = "type_id", insertable = false, updatable = false)
+    private Account_type type;
 
     public Account() {
         setDto(AccountDTO.class);
     }
     public Account(BigDecimal current_amount, Timestamp date_amount, String customer_id, String type_id,
-            Timestamp creation_date) {
+            Timestamp creation_date, Account_type type) {
         this.current_amount = current_amount;
         this.date_amount = date_amount;
         this.customer_id = customer_id;
         this.type_id = type_id;
         this.creation_date = creation_date;
+        this.type = type;
         setDto(AccountDTO.class);
     }
     @Override

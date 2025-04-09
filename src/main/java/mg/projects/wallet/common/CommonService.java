@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import mg.projects.wallet.common.baseModel.BaseEntity;
 import mg.projects.wallet.common.baseModel.DTO;
@@ -18,7 +17,7 @@ import org.springframework.data.domain.Pageable;
  * devront hériter pour ne pas avoir de répétition de code
  * et avoir une performance inouie
  */
-public class CommonService <T extends BaseEntity,ID,JPA extends JpaRepository<T,ID>> {
+public class CommonService <T extends BaseEntity,ID,JPA extends CommonRepository<T,ID>> {
     private final JPA jpa;
     public CommonService(JPA jpa) {
         this.jpa = jpa;
@@ -33,16 +32,19 @@ public class CommonService <T extends BaseEntity,ID,JPA extends JpaRepository<T,
     public void delete(T model){
         jpa.delete(model);
     }
-    public void deleteById(ID id){
-        jpa.deleteById(id);
+    public void deleteById(ID id) throws Exception{
+        T model = jpa.findByIdAndStatus(id, 0).orElseThrow(() -> new Exception("Id introuvable: "+id));
+        model.setStatus(1);
+        jpa.save(model);
+        // jpa.deleteById(id);
     }
-    public DTO findById(ID id) throws InstantiationException, IllegalAccessException, InvocationTargetException{
-        T finded = jpa.findById(id).orElse(null);
+    public DTO findById(ID id) throws Exception{
+        T finded = jpa.findByIdAndStatus(id, 0).orElseThrow(() -> new Exception("Id introuvable: "+id));
         return finded.EntityToDTO();
     }
     public List<DTO> findAll(String key) throws InstantiationException, IllegalAccessException, InvocationTargetException{
         if (key == null || key.equals("")) {
-           return ListEntityToListDto(jpa.findAll());
+           return ListEntityToListDto(jpa.findAllByStatus(0));
         }
         return null;
     }
@@ -67,7 +69,7 @@ public class CommonService <T extends BaseEntity,ID,JPA extends JpaRepository<T,
      */
     public Page<DTO> getPaginated(int pageNumber, int pageSize, String key) {
        Pageable pageable = PageRequest.of(pageNumber, pageSize);
-       Page<T> list = jpa.findAll(pageable);
+       Page<T> list = jpa.findAllByStatus(0,pageable);
        Page<DTO> result = list.map(entity -> {
         try {
             return entity.EntityToDTO();

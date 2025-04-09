@@ -29,7 +29,7 @@ public class AccounTypeServiceTest {
     private AccounTypeService service;
 
     @Test
-    void testDeleteById() {
+    void testDeleteById() throws Exception {
         Account_type type = new Account_type("Staff", "STA", new Timestamp(System.currentTimeMillis()));
         type.setId("ACT002");
         when(repo.save(type)).thenReturn(type);
@@ -57,7 +57,7 @@ public class AccounTypeServiceTest {
     }
 
     @Test
-    void testFindById() throws InstantiationException, IllegalAccessException, InvocationTargetException {
+    void testFindById() throws Exception {
         Account_type type = new Account_type("Staff", "STA", new Timestamp(System.currentTimeMillis()));
         type.setId("ACT002");
         when(repo.findById(type.getId())).thenReturn(Optional.of(type));

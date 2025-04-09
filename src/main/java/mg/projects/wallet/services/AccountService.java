@@ -1,5 +1,7 @@
 package mg.projects.wallet.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import mg.projects.wallet.common.CommonService;
@@ -11,6 +13,9 @@ public class AccountService extends CommonService<Account, String, AccountRepo>{
 
     public AccountService(AccountRepo jpa) {
         super(jpa);
+    }
+    public List<Account> findByCustomer(String customer){
+        return getJpa().findByCustomer_id(customer);
     }
 
 }
