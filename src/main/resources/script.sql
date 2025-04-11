@@ -115,7 +115,7 @@ password) values
  ('Larry Hasinjato', 'larry.fah@gmail.com', '0346580050','C',current_timestamp,'Larry'),
  ('Betty', 'betty@gmail.com', '0348549239','C',current_timestamp,'betty');
 
- SELECT a.*
+SELECT a.*
 FROM account a
 WHERE a.customer_id = 'CUS00004'
 and a.status=0

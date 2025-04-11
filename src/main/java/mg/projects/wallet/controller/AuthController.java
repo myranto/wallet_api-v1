@@ -21,7 +21,7 @@ public class AuthController {
         try {
             return ResponseEntity.ok(new ToJsonData<>(service.checkPassword(model), null));
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()), org.springframework.http.HttpStatus.UNAUTHORIZED);
         }
     }
