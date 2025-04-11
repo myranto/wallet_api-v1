@@ -6,7 +6,6 @@ import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.Setter;
 import mg.projects.wallet.common.baseModel.DTO;
-import mg.projects.wallet.models.Account_type;
 import mg.projects.wallet.models.Transfer;
 
 @Getter

@@ -1,7 +1,6 @@
 package mg.projects.wallet.dto;
 
 import java.lang.reflect.InvocationTargetException;
-import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;

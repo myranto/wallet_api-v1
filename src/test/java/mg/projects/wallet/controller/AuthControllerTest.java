@@ -2,7 +2,6 @@ package mg.projects.wallet.controller;
 
 import static org.mockito.Mockito.when;
 
-import java.sql.Timestamp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
