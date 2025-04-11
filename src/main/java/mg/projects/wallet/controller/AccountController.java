@@ -17,7 +17,6 @@ import mg.projects.wallet.services.AccountService;
 
 @RestController
 @RequestMapping("account")
-@CrossOrigin(methods = {RequestMethod.DELETE, RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.OPTIONS})
 public class AccountController extends CommonController<AccountService, Account> {
     public AccountController(AccountService service) {
         super(service);

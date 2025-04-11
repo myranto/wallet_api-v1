@@ -11,7 +11,6 @@ import mg.projects.wallet.services.AuthService;
 // classe controller servant pour l'authentication
 @RestController
 @RequestMapping("auth")
-@CrossOrigin(methods = {RequestMethod.DELETE, RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.OPTIONS})
 public class AuthController {
     @Autowired
     private AuthService service;
