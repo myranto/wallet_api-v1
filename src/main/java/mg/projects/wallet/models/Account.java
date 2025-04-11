@@ -19,7 +19,7 @@ public class Account extends BaseEntity{
     @Column(name = "current_amount")
     private BigDecimal currentamount;
     @Column(name = "date_amount")
-    private Timestamp dateamount;
+    private Timestamp dateamount;//mila jerena hoe <= date du jour
     @Column(nullable = false)
     private String customer_id;
     @Column(nullable = false)

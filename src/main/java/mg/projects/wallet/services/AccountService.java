@@ -17,5 +17,8 @@ public class AccountService extends CommonService<Account, String, AccountRepo>{
     public List<Account> findByCustomer(String customer){
         return getJpa().findByCustomer_id(customer);
     }
+    public List<Account> findAccountValue(String customer){
+        return getJpa().findLastAccountByAccountID(customer);
+    }
 
 }
