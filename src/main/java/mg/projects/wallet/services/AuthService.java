@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
+// import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import mg.projects.wallet.dto.AuthDTO;
@@ -20,11 +20,14 @@ import mg.projects.wallet.services.security.jwt.JWTUtility;
 public class AuthService implements UserDetailsService {
     @Autowired
     private CustomerRepo repo;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    
+    // @Autowired
+    // private PasswordEncoder passwordEncoder;
+
     public CustomerDTO checkPassword(AuthDTO user) throws Exception{
             Customer finded = repo.findOneByMail(user.getMail()).orElseThrow(()->new Exception("Identifiant ou mot de passe incorrect"));
+            // if (!passwordEncoder.matches(user.getPassword(), finded.getPassword())) {
+            //     throw new Exception("Identifiant ou mot de passe incorrect");
+            // }
             if (!finded.getPassword().equals(user.getPassword())) {
                 throw new Exception("Identifiant ou mot de passe incorrect");
             }

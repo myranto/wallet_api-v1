@@ -6,11 +6,13 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.function.Function;
 
+@Service
 public class JWTUtility {
    public static SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     public String extractUsername(String token) throws SignatureException {
@@ -22,7 +24,12 @@ public class JWTUtility {
     }
 
     private Claims extractAllClaims(String token)throws SignatureException {
-        return Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody();
+        // return Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody();
+        return Jwts.parserBuilder()
+        .setSigningKey(key)
+        .build()
+        .parseClaimsJws(token)
+        .getBody();
     }
     private Boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
