@@ -3,7 +3,6 @@ package mg.projects.wallet.controller;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;

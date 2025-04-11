@@ -8,7 +8,6 @@ import mg.projects.wallet.services.TransferService;
 
 @RestController
 @RequestMapping("transfer")
-@CrossOrigin(methods = {RequestMethod.DELETE, RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.OPTIONS})
 public class TransferController extends CommonController<TransferService, Transfer>{
 
     public TransferController(TransferService service) {

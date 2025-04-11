@@ -8,7 +8,6 @@ import mg.projects.wallet.services.ChargeService;
 
 @RestController
 @RequestMapping("charge")
-@CrossOrigin(methods = {RequestMethod.DELETE, RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.OPTIONS})
 public class ChargeController extends CommonController<ChargeService, Charge> {
 
     public ChargeController(ChargeService service) {

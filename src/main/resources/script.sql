@@ -114,3 +114,16 @@ password) values
  ('My Ranto', 'my.randrianantoandro@gmail.com', '0348549237','A',current_timestamp,'myranto'),
  ('Larry Hasinjato', 'larry.fah@gmail.com', '0346580050','C',current_timestamp,'Larry'),
  ('Betty', 'betty@gmail.com', '0348549239','C',current_timestamp,'betty');
+
+SELECT a.*
+FROM account a
+WHERE a.customer_id = 'CUS00004'
+and a.status=0
+AND a.date_amount = (
+    SELECT MAX(date_amount)
+    FROM account sub_a
+    WHERE sub_a.customer_id = 'CUS00004'
+    AND sub_a.type_id = a.type_id
+)
+
+https://melodic-gumdrop-9ee334.netlify.app/home/account_type

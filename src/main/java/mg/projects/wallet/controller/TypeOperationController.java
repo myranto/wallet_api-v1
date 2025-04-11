@@ -8,7 +8,6 @@ import mg.projects.wallet.services.TypeOperationService;
 
 @RestController
 @RequestMapping("type_operation")
-@CrossOrigin(methods = {RequestMethod.DELETE, RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.OPTIONS})
 public class TypeOperationController extends CommonController<TypeOperationService, TypeOperation> {
 
     public TypeOperationController(TypeOperationService service) {

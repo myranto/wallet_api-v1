@@ -1,7 +1,5 @@
 package mg.projects.wallet.dto;
 
-import java.sql.Timestamp;
-
 import lombok.Getter;
 import lombok.Setter;
 import mg.projects.wallet.common.baseModel.DTO;

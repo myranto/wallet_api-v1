@@ -4,7 +4,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.lang.reflect.InvocationTargetException;
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;

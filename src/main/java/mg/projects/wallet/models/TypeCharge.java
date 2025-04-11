@@ -1,6 +1,5 @@
 package mg.projects.wallet.models;
 
-import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

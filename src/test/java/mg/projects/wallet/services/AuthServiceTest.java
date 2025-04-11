@@ -3,7 +3,6 @@ package mg.projects.wallet.services;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-import java.sql.Timestamp;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;

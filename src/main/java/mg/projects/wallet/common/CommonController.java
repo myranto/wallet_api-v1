@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mg.projects.wallet.common.baseModel.BaseEntity;
-import mg.projects.wallet.common.baseModel.DTO;
 import mg.projects.wallet.format.ToJsonData;
 
 /*
