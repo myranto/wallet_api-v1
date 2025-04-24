@@ -30,6 +30,17 @@ public class AccountController extends CommonController<AccountService, Account>
             return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()), org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
         }
     }
+    @GetMapping("/current_amount/{id}")
+    public ResponseEntity<?> selectbySolde(@PathVariable String id) {
+        try {
+            List<Account> list = getService().selectManualSold(id);
+
+            return ResponseEntity.ok(new ToJsonData<>(list, null));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(new ToJsonData<>(null, e.getMessage()), org.springframework.http.HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
     // maka anle ammount farany by type_id(account_type)
     @GetMapping("/last/{id}")
     public ResponseEntity<?> selectbyLastAccount(@PathVariable String id) {

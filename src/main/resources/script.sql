@@ -185,7 +185,7 @@ and date_part('month', mois_du_charge) in (date_part('month', current_timestamp)
 group by customer_id, account_id;
 
             -> solde actuel: -> 
-select * from get_manual_solde('CUS00004')
+select * from get_manual_solde('CUS00004') mety ty
             -> sum(solde_actuel, solde credit) - solde_debit = solde du mois
 
 

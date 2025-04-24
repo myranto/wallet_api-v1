@@ -21,4 +21,7 @@ public class AccountService extends CommonService<Account, String, AccountRepo>{
         return getJpa().findLastAccountByAccountID(customer);
     }
 
+    public List<Account> selectManualSold(String customer){
+        return getJpa().getManualSold(customer);
+    }
 }

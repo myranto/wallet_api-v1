@@ -23,4 +23,7 @@ public interface AccountRepo extends CommonRepository<Account, String> {
                 "    AND sub_a.type_id = a.type_id\r\n" + //
                 ")")
     List<Account> findLastAccountByAccountID(String customer_id);
+
+    @Query(nativeQuery = true, value = "select * from get_manual_solde(:customer_id)")
+    List<Account> getManualSold(String customer_id);
 }
