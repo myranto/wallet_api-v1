@@ -114,16 +114,81 @@ password) values
  ('My Ranto', 'my.randrianantoandro@gmail.com', '0348549237','A',current_timestamp,'myranto'),
  ('Larry Hasinjato', 'larry.fah@gmail.com', '0346580050','C',current_timestamp,'Larry'),
  ('Betty', 'betty@gmail.com', '0348549239','C',current_timestamp,'betty');
+--maka solde farany ao anaty account
 
-SELECT a.*
-FROM account a
-WHERE a.customer_id = 'CUS00004'
-and a.status=0
-AND a.date_amount = (
-    SELECT MAX(date_amount)
-    FROM account sub_a
-    WHERE sub_a.customer_id = 'CUS00004'
-    AND sub_a.type_id = a.type_id
-)
+create or replace function get_manual_solde(idcustomer varchar)
+    returns table(
+        id varchar ,
+        current_amount numeric,
+        date_amount timestamp,
+        customer_id varchar,
+        type_id varchar,
+        creation_date timestamp,
+        status int
+    )
+    language plpgsql
+    as $$
+    begin
+        return query 
+        SELECT  a.*
+        FROM account a
+        WHERE a.customer_id = idcustomer
+        and a.status=0
+        AND a.date_amount = (
+            SELECT MAX(sub_a.date_amount)
+            FROM account sub_a
+            WHERE sub_a.customer_id = idcustomer
+            AND sub_a.date_amount <= current_timestamp
+            AND sub_a.type_id = a.type_id
+        );
+    end; $$
+--requete ilaina amle credit sy debit
+create or replace view v_list_charge as
+SELECT
+    c.id,
+    c.customer_id,
+    -- Affiche le premier jour du mois généré
+    date_trunc('month', gs.a)::date AS mois_du_charge, --mois du credit raha credit
+    c.start_date,
+    c.end_date,
+    c.amount,
+    c.account_id,
+    c.operation_id,
+    c.type_charge,--miala fotsiny ty raha ny credit
+    c.status,
+    c.creation_date
+FROM
+    charge c
+JOIN
+    generate_series(
+        date_trunc('month', c.start_date),
+        c.end_date,
+        '1 month'::interval
+    ) as gs(a) ON TRUE
+ORDER BY
+    c.id,
+    mois_du_charge;--mois du credit raha credit
+
+/*
+    zavatra atao manaraka:
+        -maka solde du mois :
+            -> dans credit: -> 
+select customer_id, sum(amount) amount,account_id from v_list_credit where  
+(date_part('year', current_timestamp) = date_part('year', mois_du_credit))
+and date_part('month', mois_du_credit) in (date_part('month', current_timestamp) - 1, date_part('month', current_timestamp) )
+group by customer_id, account_id; 
+
+            -> dans débit: ->
+select customer_id, sum(amount) amount,account_id from v_list_charge where  
+(date_part('year', current_timestamp) = date_part('year', mois_du_charge))
+and date_part('month', mois_du_charge) in (date_part('month', current_timestamp) - 1, date_part('month', current_timestamp) )
+group by customer_id, account_id;
+
+            -> solde actuel: -> 
+select * from get_manual_solde('CUS00004')
+            -> sum(solde_actuel, solde credit) - solde_debit = solde du mois
+
+
+*/
 
 https://melodic-gumdrop-9ee334.netlify.app/home/account_type
