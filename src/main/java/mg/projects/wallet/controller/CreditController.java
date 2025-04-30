@@ -6,10 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import mg.projects.wallet.common.CommonController;
-import mg.projects.wallet.dto.natives.VamountDTO;
 import mg.projects.wallet.format.ToJsonData;
 import mg.projects.wallet.models.Credit;
 import mg.projects.wallet.services.CreditService;
+import mg.projects.wallet.visual.VamountDTO;
 
 @RestController
 @RequestMapping("credit")

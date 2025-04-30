@@ -9,11 +9,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import mg.projects.wallet.dto.natives.VamountDTO;
 import mg.projects.wallet.models.Account;
 import mg.projects.wallet.repository.AccountRepo;
 import mg.projects.wallet.repository.ChargeRepo;
 import mg.projects.wallet.repository.CreditRepo;
+import mg.projects.wallet.visual.VamountDTO;
 
 @Service
 public class VamountService {
@@ -27,7 +27,7 @@ public class VamountService {
     public List<VamountDTO> getCurrentAmount(String customer) {
         List<VamountDTO> chargeAmounts = chargeRepo.selectCurrentChargeFromView(customer);
         List<VamountDTO> creditAmounts = creditRepo.selectCurrentCreditFromView(customer);
-        List<Account> accountAmounts = accountRepo.findLastAccountByAccountID(customer);
+        List<Account> accountAmounts = accountRepo.getManualSold(customer);
         List<VamountDTO> sumCreditAccount = calculateAmount(creditAmounts, convertAccountToVamount(accountAmounts), "sum");
         List<VamountDTO> diffCreditAccountAndCharge = calculateAmount(sumCreditAccount, chargeAmounts, "diff");
         return diffCreditAccountAndCharge;

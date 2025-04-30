@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import mg.projects.wallet.common.CommonController;
-import mg.projects.wallet.dto.natives.VamountDTO;
 import mg.projects.wallet.format.ToJsonData;
 import mg.projects.wallet.models.Account;
 import mg.projects.wallet.services.AccountService;
 import mg.projects.wallet.services.views.VamountService;
+import mg.projects.wallet.visual.VamountDTO;
 
 @RestController
 @RequestMapping("account")

@@ -1,4 +1,4 @@
-package mg.projects.wallet.dto.natives;
+package mg.projects.wallet.visual;
 
 import java.math.BigDecimal;
 

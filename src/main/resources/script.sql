@@ -138,7 +138,8 @@ create or replace function get_manual_solde(idcustomer varchar)
             SELECT MAX(sub_a.date_amount)
             FROM account sub_a
             WHERE sub_a.customer_id = idcustomer
-            AND sub_a.date_amount <= current_timestamp
+            -- AND sub_a.date_amount <= current_timestamp
+            AND date_trunc('month', sub_a.date_amount) = date_trunc('month', current_timestamp)
             AND sub_a.type_id = a.type_id
         );
     end; $$
@@ -187,7 +188,24 @@ group by customer_id, account_id;
             -> solde actuel: -> 
 select * from get_manual_solde('CUS00004') mety ty
             -> sum(solde_actuel, solde credit) - solde_debit = solde du mois
+    done.
 
+    visualisation solde chaque mois:
+        .zavatra misy:
+            -liste solde credit dans un range date (credit par mois)
+            -liste charge dans un range date (charge par mois)
+        .Formule:
+            for each account
+                Solde nextMonth = solde month-1 + (credit of month - charge of month)
+        .départ current month
+            currentSolde = getCurrentAmount(String customer); --java
+            liste credit = select * from v_list_credit  WHERE mois_du_credit > date_trunc('month', current_timestamp) + interval '1 month';
+            liste charge = SELECT * FROM v_list_charge WHERE mois_du_charge > date_trunc('month', current_timestamp) + interval '1 month';
+            mamorona Visualisation:
+                -List<Credit>
+                -List<Charge>
+                -Month
+                -TotalAmount
 
 */
 
