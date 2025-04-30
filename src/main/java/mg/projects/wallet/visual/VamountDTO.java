@@ -1,6 +1,7 @@
 package mg.projects.wallet.visual;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +12,8 @@ public class VamountDTO {
     private String customer_id;
     private BigDecimal amount;
     private String account_id;
+    private Timestamp month;
+    
     public VamountDTO() {
     }
     public VamountDTO(String customer_id, BigDecimal amount, String account_id) {

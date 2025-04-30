@@ -17,7 +17,7 @@ public interface ChargeRepo extends CommonRepository<Charge, String>{
     List<VamountDTO> selectCurrentChargeFromView(String customer_id);
     @Query(nativeQuery = true,
     value = 
-    "SELECT customer_id, amount,account_id FROM v_list_charge WHERE customer_id=:customer_id and mois_du_charge > date_trunc('month', current_timestamp) + interval '1 month'"
+    "SELECT customer_id, amount,account_id, month FROM v_list_charge WHERE customer_id=:customer_id and mois_du_charge > date_trunc('month', current_timestamp) + interval '1 month'"
     )
     List<VamountDTO> selectNextChargeFromView(String customer_id);
 }

@@ -17,7 +17,7 @@ public interface CreditRepo extends CommonRepository<Credit, String> {
     List<VamountDTO> selectCurrentCreditFromView(String customer_id);
     @Query(nativeQuery = true,
     value = 
-    "SELECT customer_id, amount,account_id FROM v_list_credit WHERE customer_id=:customer_id and mois_du_credit > date_trunc('month', current_timestamp) + interval '1 month'"
+    "SELECT customer_id, amount,account_id, month FROM v_list_credit WHERE customer_id=:customer_id and mois_du_credit > date_trunc('month', current_timestamp) + interval '1 month'"
     )
     List<VamountDTO> selectNextCreditFromView(String customer_id);
 }

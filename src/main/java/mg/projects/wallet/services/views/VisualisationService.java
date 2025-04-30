@@ -27,7 +27,7 @@ public class VisualisationService {
     @Autowired
     private AccountRepo accountRepo;
 
-    public List<Visualisation> visualisationAccount(String customer) {
+    public List<Visualisation> visualisationAccount(String customer) throws Exception {
         List<VamountDTO> chargeAmounts = chargeRepo.selectCurrentChargeFromView(customer);
         List<VamountDTO> creditAmounts = creditRepo.selectCurrentCreditFromView(customer);
         List<Account> accountAmounts = accountRepo.getManualSold(customer);
@@ -38,24 +38,41 @@ public class VisualisationService {
     }
 
     private void createVisual(List<VamountDTO> credit, List<VamountDTO> charge, List<VamountDTO> currentAmount,
-            List<Visualisation> result) {
+            List<Visualisation> result) throws Exception {
         Map<String, Visualisation> regroupment = regroupByDate(credit, charge, currentAmount);
     }
 
     private Map<String, Visualisation> regroupByDate(List<VamountDTO> credit, List<VamountDTO> charge,
-            List<VamountDTO> currentAmount) {
+            List<VamountDTO> currentAmount) throws Exception {
         Map<String, Visualisation> regroupment = new HashMap<>();
-        for (VamountDTO crt : credit) {
-            // String yearMonth = extractYearAndMonth(crt.)
-        }
-        for (VamountDTO crt : charge) {
 
-        }
-        for (VamountDTO crt : currentAmount) {
+        Map<String, List<VamountDTO>> groupDcr = groupByAccount(credit);
+        Map<String, List<VamountDTO>> groupDch = groupByAccount(charge);
+        Map<String, List<VamountDTO>> groupDcurrentAmount = groupByAccount(currentAmount);
+        
+        Map<String, Map<String, List<VamountDTO>>> val = new HashMap<>();
 
+        return regroupment;
+    }
+    private Map<String, List<VamountDTO>> groupByAccount(List<VamountDTO> list){
+        Map<String, List<VamountDTO>> regroupment = new HashMap<>();
+        for (VamountDTO vamountDTO : list) {
+            String accountID = vamountDTO.getAccount_id();
+            regroupment.compute(accountID, (key, dto) -> {
+                if (dto == null) {
+                    List<VamountDTO> renew = new ArrayList<>();
+                    renew.add(vamountDTO);
+                    return renew;
+                }else{
+                    dto.add(vamountDTO);
+                    return dto;
+                }
+            });
         }
         return regroupment;
     }
+
+
     private void calculAmountByDate(){
 
     }
