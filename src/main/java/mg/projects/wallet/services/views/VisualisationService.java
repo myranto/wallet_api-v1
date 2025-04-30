@@ -39,19 +39,28 @@ public class VisualisationService {
 
     private void createVisual(List<VamountDTO> credit, List<VamountDTO> charge, List<VamountDTO> currentAmount,
             List<Visualisation> result) throws Exception {
-        Map<String, Visualisation> regroupment = regroupByDate(credit, charge, currentAmount);
+                
+                Map<String, List<VamountDTO>> groupDcr = groupByAccount(credit);
+                Map<String, List<VamountDTO>> groupDch = groupByAccount(charge);
+                Map<String, List<VamountDTO>> groupDcurrentAmount = groupByAccount(currentAmount);
+
+                Map<String, Map<String, List<VamountDTO>>> cr = regroupByDate(groupDcr);
+                Map<String, Map<String, List<VamountDTO>>> ch = regroupByDate(groupDch);
+                Map<String, Map<String, List<VamountDTO>>> current = regroupByDate(groupDcurrentAmount);
+
     }
 
-    private Map<String, Visualisation> regroupByDate(List<VamountDTO> credit, List<VamountDTO> charge,
-            List<VamountDTO> currentAmount) throws Exception {
-        Map<String, Visualisation> regroupment = new HashMap<>();
+    private Map<String, Map<String, List<VamountDTO>>> regroupByDate(Map<String, List<VamountDTO>> cr) throws Exception {
+        Map<String, Map<String, List<VamountDTO>>> regroupment = new HashMap<>();
 
-        Map<String, List<VamountDTO>> groupDcr = groupByAccount(credit);
-        Map<String, List<VamountDTO>> groupDch = groupByAccount(charge);
-        Map<String, List<VamountDTO>> groupDcurrentAmount = groupByAccount(currentAmount);
-        
         Map<String, Map<String, List<VamountDTO>>> val = new HashMap<>();
-
+        for (Map.Entry<String, List<VamountDTO>> entry : cr.entrySet()) {
+            String account = entry.getKey();
+            List<VamountDTO> amounts = entry.getValue();       
+            for (VamountDTO amountDto : amounts) {
+                System.out.println("  Amount Detail: " + amountDto);
+            }
+        }
         return regroupment;
     }
     private Map<String, List<VamountDTO>> groupByAccount(List<VamountDTO> list){
