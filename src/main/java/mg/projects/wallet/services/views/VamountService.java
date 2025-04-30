@@ -33,7 +33,7 @@ public class VamountService {
         return diffCreditAccountAndCharge;
     }
 
-    private List<VamountDTO> convertAccountToVamount(List<Account> accounts) {
+    public static List<VamountDTO> convertAccountToVamount(List<Account> accounts) {
         List<VamountDTO> result = new ArrayList<>();
         for (Account row : accounts) {
             VamountDTO newDto = new VamountDTO();

@@ -42,6 +42,7 @@ public class SecurityConfig {
                         UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/auth/login").permitAll()
+                        .requestMatchers("/customer").permitAll()
                         .requestMatchers("/auth/reset/password").permitAll()
                         .anyRequest().authenticated()
                 // .anyRequest().permitAll()

@@ -149,7 +149,7 @@ SELECT
     c.id,
     c.customer_id,
     -- Affiche le premier jour du mois généré
-    date_trunc('month', gs.a)::date AS mois_du_charge, --mois du credit raha credit
+    date_trunc('month', gs.a)::date AS mois,
     c.start_date,
     c.end_date,
     c.amount,
