@@ -168,7 +168,7 @@ JOIN
     ) as gs(a) ON TRUE
 ORDER BY
     c.id,
-    mois_du_charge;--mois du credit raha credit
+    month;
 
 /*
     zavatra atao manaraka:
